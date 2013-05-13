@@ -1,0 +1,616 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+	<title>Go 프로그래밍 입문 | 핵심 패키지</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="shortcut icon" href="assets/favicon.ico">
+	<link type="text/css" href="css/style.css" rel="stylesheet" />
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-40817106-1', 'codingbud.com');
+	  ga('send', 'pageview');
+	</script>
+	</head>
+<body>
+<div id="container">
+
+<div>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-3361703209991829";
+/* 코딩벗 */
+google_ad_slot = "3024640997";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+
+<h1>13장 핵심 패키지</h1>
+<p>모든 것들을 맨 처음부터 작성하지 않는 대신 현실에서 이뤄지는 대부분의 프로그래밍은 기존 라이브러리와 상호작용하는 능력에 의존한다. 13장에서는 Go에 포함된 가장 널리 사용되는 패키지를 살펴보겠다.</p>
+<p>우선 염두에 둘 사항이 하나 있다. 이러한 라이브러리는 상당히 직관적이긴 하지만(또는 이전 장에서 설명했지만) Go에 포함된 다수의 라이브러리를 사용하려면 특화된 도메인 지식(예: 암호화)이 필요하다. 이 같은 기반 기술을 설명하는 것은 이 책의 범위를 벗어난다.</p>
+<h2 id="section1">13.1 문자열</h2>
+<p>Go의 <code>strings</code> 패키지에는 문자열에 이용할 수 있는 함수가 굉장히 많이 포함돼 있다.</p>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;strings&quot;
+)
+
+func main() {
+    fmt.Println(
+        // true
+        strings.Contains(&quot;test&quot;, &quot;es&quot;),
+
+        // 2
+        strings.Count(&quot;test&quot;, &quot;t&quot;),
+
+        // true
+        strings.HasPrefix(&quot;test&quot;, &quot;te&quot;),
+
+        // true
+        strings.HasSuffix(&quot;test&quot;, &quot;st&quot;),
+
+        // 1
+        strings.Index(&quot;test&quot;, &quot;e&quot;),
+
+        // &quot;a-b&quot;
+        strings.Join([]string{&quot;a&quot;,&quot;b&quot;}, &quot;-&quot;),
+
+        // == &quot;aaaaa&quot;
+        strings.Repeat(&quot;a&quot;, 5),
+
+        // &quot;bbaa&quot;
+        strings.Replace(&quot;aaaa&quot;, &quot;a&quot;, &quot;b&quot;, 2),
+
+        // []string{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;}
+        strings.Split(&quot;a-b-c-d-e&quot;, &quot;-&quot;),
+
+        // &quot;test&quot;
+        strings.ToLower(&quot;TEST&quot;),
+
+        // &quot;TEST&quot;
+        strings.ToUpper(&quot;test&quot;),
+    )
+}
+</code></pre>
+
+<p>때로는 문자열을 바이너리 데이터로 사용해야 할 때가 있다. 문자열을 바이트 슬라이스로 변환하려면(또는 그 반대로) 다음과 같이 하면 된다.</p>
+<pre><code>arr := []byte(&quot;test&quot;)
+str := string([]byte{'t','e','s','t'})
+</code></pre>
+
+<h2 id="section2">13.2 입출력</h2>
+<p>파일을 살펴보기에 앞서 먼저 Go의 <code>io</code> 패키지를 이해할 필요가 있다. <code>io</code> 패키지는 함수도 일부 들어 있지만 주로 다른 패키지에서 사용되는 인터페이스로 구성돼 있다. 두 가지 주요 인터페이스는 <code>Reader</code>와 <code>Writer</code>다. <code>Reader</code>는 <code>Read</code> 메서드를 통해 읽기를 지원한다. <code>Writer</code>는 <code>Write</code> 메서드를 통해 쓰기를 지원한다. Go에는 <code>Reader</code>와 <code>Writer</code>를 인자로 받는 함수가 많다. 예를 들어 <code>io</code> 패키지에는 <code>Reader</code>에서 <code>Writer</code>로 데이터를 복사하는 <code>Copy</code> 함수가 있다.</p>
+<pre><code>func Copy(dst Writer, src Reader) (written int64, err error)
+</code></pre>
+
+<p><code>[]byte</code>나 <code>string</code>을 읽거나 쓰려면 <code>bytes</code> 패키지에 들어 있는 <code>Buffer</code> 구조체를 사용하면 된다.</p>
+<pre><code>var buf bytes.Buffer
+buf.Write([]byte(&quot;test&quot;))
+</code></pre>
+
+<p><code>Buffer</code>는 초기화할 필요가 없으며 <code>Reader</code>와 <code>Writer</code>를 모두 지원한다. <code>buf.Bytes()</code>를 호출하면 버퍼를 <code>[]byte</code>로 변환할 수 있다. 문자열에서 읽기만 하면 된다면 버퍼를 이용하는 것보다 효율적인 <code>strings.NewReader</code> 함수를 이용하면 된다.</p>
+<h2 id="section3">13.3 파일과 폴더</h2>
+<p>Go에서 파일을 열려면 <code>os</code> 패키지에 포함된 <code>Open</code> 함수를 사용하면 된다. 다음은 파일의 내용을 읽어 터미널에 출력하는 예제다.</p>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;os&quot;
+)
+
+func main() {
+    file, err := os.Open(&quot;test.txt&quot;)
+    if err != nil {
+        // 오류를 처리
+        return
+    }
+    defer file.Close()
+
+    // 파일의 크기를 구함
+    stat, err := file.Stat()
+    if err != nil {
+        return
+    }
+
+    // 파일을 읽음
+    bs := make([]byte, stat.Size())
+    _, err = file.Read(bs)
+    if err != nil {
+        return
+    }
+
+    str := string(bs)
+    fmt.Println(str)
+}
+</code></pre>
+
+<p>여기서는 파일을 연 직후에 <code>defer file.Close()</code>를 사용해 함수 실행이 완료된 후에 곧바로 파일이 닫히게 만들었다. 파일을 읽는 것은 굉장히 자주 하는 작업이므로 파일을 읽는 더 짧은 방법이 있다.</p>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;io/ioutil&quot;
+)
+
+func main() {
+    bs, err := ioutil.ReadFile(&quot;test.txt&quot;)
+    if err != nil {
+        return
+    }
+    str := string(bs)
+    fmt.Println(str)
+}
+</code></pre>
+
+<p>다음은 파일을 생성하는 예제다.</p>
+<pre><code>package main
+
+import (
+    &quot;os&quot;
+)
+
+func main() {
+    file, err := os.Create(&quot;test.txt&quot;)
+    if err != nil {
+        // 오류를 처리
+        return
+    }
+    defer file.Close()
+
+    file.WriteString(&quot;test&quot;)
+}
+</code></pre>
+
+<p>디렉터리의 내용을 구할 때도 똑같이 <code>os.Open</code> 함수를 사용하지만 파일명 대신 디렉터리 경로를 지정한다. 그런 다음 <code>Readdir</code> 메서드를 호출하면 된다.</p>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;os&quot;
+)
+
+func main() {
+    dir, err := os.Open(&quot;.&quot;)
+    if err != nil {
+        return
+    }
+    defer dir.Close()
+
+    fileInfos, err := dir.Readdir(-1)
+    if err != nil {
+        return
+    }
+    for _, fi := range fileInfos {
+        fmt.Println(fi.Name())
+    }
+}
+</code></pre>
+
+<p>폴더를 재귀적으로 열람하고 싶을 때가 있다(즉, 폴더의 내용과 모든 하위 폴더, 모든 하위 폴더의 하위 폴더, ...를 읽는다). 이러한 작업을 손쉽게 할 수 있게 <code>path/filepath</code> 패키지에는 <code>Walk</code> 함수가 제공된다.</p>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;os&quot;
+    &quot;path/filepath&quot;
+)
+
+func main() {
+    filepath.Walk(&quot;.&quot;, func(path string, info os.FileInfo, err error) error {
+        fmt.Println(path)
+        return nil
+    })
+}
+</code></pre>
+
+<p><code>Walk</code>에 전달하는 함수는 루트 폴더 안에 들어 있는 모든 파일과 폴더에 대해 호출된다(이 경우 루트 폴더는 <code>.</code>이다).</p>
+<h2 id="section4">13.4 오류</h2>
+<p>Go에는 이미 앞에서 본 적이 있는 오류에 대한 내장 타입(<code>error</code> 타입)을 제공한다. <code>errors</code> 패키지에 포함된 <code>New</code> 함수를 이용하면 자체적인 오류를 만들어낼 수 있다.</p>
+<pre><code>package main
+
+import &quot;errors&quot;
+
+func main() {
+    err := errors.New(&quot;error message&quot;)
+}
+</code></pre>
+
+<h2 id="section5">13.5 컨테이너와 정렬</h2>
+<p>리스트와 맵과 더불어 Go에서는 <code>container</code> 패키지를 통해 이용 가능한 다양한 컬렉션을 제공한다. 한 예로 <code>container/list</code> 패키지를 살펴보자.</p>
+<h3>리스트</h3>
+<p><code>container/list</code> 패키지에는 이중 연결 리스트(doubly-linked list)가 구현돼 있다. 연결 리스트는 다음과 같은 형태의 자료구조다.</p>
+<p><img class="block" src="assets/list.png" alt="이중 연결 리스트" /></p>
+<p>리스트의 각 노드에는 값(이 경우 1, 2, 3)과 다음 노드를 가리키는 포인터가 담긴다. 이것은 이중 연결 리스트라서 각 노드에는 이전 노드를 가리키는 포인터도 담겨 있다. 이 리스트는 다음과 같은 프로그램으로 만들 수 있다.</p>
+<pre><code>package main
+
+import (&quot;fmt&quot; ; &quot;container/list&quot;)
+
+func main() {
+    var x list.List
+    x.PushBack(1)
+    x.PushBack(2)
+    x.PushBack(3)
+
+    for e := x.Front(); e != nil; e=e.Next() {
+        fmt.Println(e.Value.(int))
+    }
+}
+</code></pre>
+
+<p><code>List</code>에 대한 기본값은 빈 리스트(<code>*List</code>는 <code>list.New</code>로도 생성할 수 있다)다. 값은 <code>PushBack</code>을 이용해 추가된다. 첫 번째 원소를 구한 다음 <code>nil</code>을 만날 때까지 링크를 따라감으로써 각 항목을 순회한다.</p>
+<h3>정렬</h3>
+<p><code>sort</code> 패키지에는 임의의 데이터를 정렬하는 데 사용할 수 있는 함수가 들어 있다. 이곳엔 기정의된 정렬 함수(정수 및 부동 소수점 수로 구성된 슬라이스에 쓸 수 있는)가 여럿 포함돼 있다. 다음은 직접 정의한 데이터를 정렬하는 예제다.</p>
+<pre><code>package main
+
+import (&quot;fmt&quot; ; &quot;sort&quot;)
+
+type Person struct {
+    Name string
+    Age int
+}
+
+type ByName []Person
+
+func (this ByName) Len() int {
+    return len(this)
+}
+func (this ByName) Less(i, j int) bool {
+    return this[i].Name &lt; this[j].Name
+}
+func (this ByName) Swap(i, j int) {
+    this[i], this[j] = this[j], this[i]
+}
+
+func main() {
+    kids := []Person{
+        {&quot;Jill&quot;,9},
+        {&quot;Jack&quot;,10},
+    }
+    sort.Sort(ByName(kids))
+    fmt.Println(kids)
+}
+</code></pre>
+
+<p><code>sort</code> 패키지의 <code>Sort</code> 함수는 <code>sort.Interface</code>를 전달받아 그것을 정렬한다. <code>sort.Interface</code>는 3개의 메서드를 필요로 하는데, <code>Len</code>, <code>Less</code>, <code>Swap</code>이 여기에 해당한다. 정렬 방식을 직접 정의하려면 새 타입(<code>ByName</code>)을 만들어 정렬하고자 하는 것의 슬라이스에 상응하게끔 만들면 된다. 그런 다음 3개의 메서드를 정의한다.</p>
+<p>그러고 나면 인명부를 정렬하는 작업은 리스트를 새로운 타입으로 형변환하는 것만큼이나 쉽다. 다음과 같은 식으로 나이순으로 정렬할 수도 있다.</p>
+<pre><code>type ByAge []Person
+func (this ByAge) Len() int {
+    return len(this)
+}
+func (this ByAge) Less(i, j int) bool {
+    return this[i].Age &lt; this[j].Age
+}
+func (this ByAge) Swap(i, j int) {
+    this[i], this[j] = this[j], this[i]
+}
+</code></pre>
+
+<h2 id="section6">13.6 해시와 암호화</h2>
+<p>해시 함수는 데이터 집합을 전달받아 그것을 더 작은 고정된 크기로 줄인다. 해시는 데이터를 찾는 것에서부터 변경 여부을 손쉽게 탐지하는 것에 이르기까지 모든 프로그래밍 분야에서 자주 사용된다. Go에서 제공하는 해시 함수는 크게 암호화와 비암호화와 관련된 해시로 나뉜다.</p>
+<p>비암호화 해시 함수는 <code>hash</code> 패키지에서 찾을 수 있으며, <code>adler32</code>, <code>crc32</code>, <code>crc64</code>, <code>fnv</code>를 포함한다. 다음은 <code>crc32</code>를 사용하는 예제다.</p>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;hash/crc32&quot;
+)
+
+func main() {
+    h := crc32.NewIEEE()
+    h.Write([]byte(&quot;test&quot;))
+    v := h.Sum32()
+    fmt.Println(v)
+}
+</code></pre>
+
+<p><code>crc32</code> 해시 객체는 <code>Writer</code> 인터페이스를 구현하고 있으므로 다른 <code>Writer</code>와 마찬가지로 바이트를 쓸 수 있다. 모든 것을 쓰고 나면 <code>Sum32()</code>를 호출해 <code>uint32</code> 값을 반환하고 싶을 것이다. <code>crc32</code>의 주된 용도는 두 파일을 비교하는 것이다. 두 파일에 대한 <code>Sum32</code> 값이 동일하면 두 파일이 동일할 확률이 굉장히 높다(100% 확신할 수는 없지만). 값이 다르다면 두 파일이 확실히 같지 않음을 의미한다.</p>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;hash/crc32&quot;
+    &quot;io/ioutil&quot;
+)
+
+func getHash(filename string) (uint32, error) {
+    bs, err := ioutil.ReadFile(&quot;test1.txt&quot;)
+    if err != nil {
+        return 0, err
+    }
+    h:= crc32.NewIEEE()
+    h.Write(bs)
+    return h.Sum32(), nil
+}
+
+func main() {
+    h1, err := getHash(&quot;test1.txt&quot;)
+    if err != nil {
+        return
+    }
+    h2, err := getHash(&quot;test2.txt&quot;)
+    if err != nil {
+        return
+    }
+    fmt.Println(h1, h2, h1 == h2)
+}
+</code></pre>
+
+<p>암호화 해시 함수는 그것에 대응되는 비암호화 해시 함수와 비슷하지만 역으로 변환하기 힘들다는 특성이 더해졌다. 암호화 해시에 데이터 집합을 부여할 경우 해시가 어떤 과정을 거쳐 만들어졌는지 파악하기가 굉장히 어렵다. 이러한 해시는 보안 애플리케이션에 자주 사용된다.</p>
+<p>한 가지 자주 사용되는 암호화 해시 함수로 SHA-1이 있다. 다음은 SHA-1을 사용하는 예제다.</p>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;crypto/sha1&quot;
+)
+
+func main() {
+    h := sha1.New()
+    h.Write([]byte(&quot;test&quot;))
+    bs := h.Sum([]byte{})
+    fmt.Println(bs)
+}
+</code></pre>
+
+<p>이 예제는 <code>crc32</code> 예제와 굉장히 비슷한데, <code>crc32</code>와 <code>sha1</code> 모두 <code>hash.Hash</code> 인터페이스를 구현하기 때문이다. 주된 차이점으로 <code>crc32</code>는 32비트 해시를 계산하는 반면 <code>sha1</code>은 160비트 해시를 계산한다는 것이다. 160비트 숫자를 표현하는 네티이브 타입은 없으므로 여기서는 20바이트짜리 슬라이스를 대신 사용했다.</p>
+<h2 id="section7">13.7 서버</h2>
+<p>Go에서 네트워크 서버를 작성하는 것은 굉장히 쉽다. 먼저 TCP 서버를 만드는 법을 살펴보자.</p>
+<pre><code>package main
+
+import (
+    &quot;encoding/gob&quot;
+    &quot;fmt&quot;
+    &quot;net&quot;
+)
+
+func server() {
+    // 포트 대기
+    ln, err := net.Listen(&quot;tcp&quot;, &quot;:9999&quot;)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    for {
+        // 연결 수락
+        c, err := ln.Accept()
+        if err != nil {
+            fmt.Println(err)
+            continue
+        }
+        // 연결 처리
+        go handleServerConnection(c)
+    }
+}
+
+func handleServerConnection(c net.Conn) {
+    // 메시지 수신
+    var msg string
+    err := gob.NewDecoder(c).Decode(&amp;msg)
+    if err != nil {
+        fmt.Println(err)
+    } else {
+        fmt.Println(&quot;Received&quot;, msg)
+    }
+
+    c.Close()
+}
+
+func client() {
+    // 서버에 연결
+    c, err := net.Dial(&quot;tcp&quot;, &quot;127.0.0.1:9999&quot;)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    // 메시지 송신
+    msg := &quot;Hello World&quot;
+    fmt.Println(&quot;Sending&quot;, msg)
+    err = gob.NewEncoder(c).Encode(msg)
+    if err != nil {
+        fmt.Println(err)
+    }
+
+    c.Close()
+}
+
+func main() {
+    go server()
+    go client()
+
+    var input string
+    fmt.Scanln(&amp;input)
+}
+</code></pre>
+
+<p>이 예제에서는 <code>encoding/gob</code> 패키지를 사용했는데, 이 패키지를 이용하면 다른 Go 프로그램에서(또는 이 경우 동일한 Go 프로그램에서) 값을 읽을 수 있도록 Go 값을 손쉽게 인코딩할 수 있다. 추가적인 인코딩은 <code>encoding</code> 아래의 패키지(<code>encoding/json</code> 같은)나 서드파티 패키지에서 찾아볼 수 있다(가령 bson 지원을 위해 <code>labix.org/v2/mgo/bson</code> 패키지를 사용할 수도 있다).</p>
+<h3>HTTP</h3>
+<p>HTTP 서버는 훨씬 더 쉽게 설정해서 사용할 수 있다.</p>
+<pre><code>package main
+
+import (&quot;net/http&quot; ; &quot;io&quot;)
+
+func hello(res http.ResponseWriter, req *http.Request) {
+    res.Header().Set(
+        &quot;Content-Type&quot;,
+        &quot;text/html&quot;,
+    )
+    io.WriteString(
+        res,
+        `&lt;doctype html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Hello World&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        Hello World!
+    &lt;/body&gt;
+&lt;/html&gt;`,
+    )
+}
+
+func main() {
+    http.HandleFunc(&quot;/hello&quot;, hello)
+    http.ListenAndServe(&quot;:9000&quot;, nil)
+}
+</code></pre>
+
+<p><code>HandleFunc</code>에서는 인자로 전달한 함수를 호출함으로써 URL 라우팅(<code>/hello</code>)를 처리한다. <code>FileServer</code>를 이용하면 정적 파일을 처리할 수도 있다.</p>
+<pre><code>http.Handle(
+    &quot;/assets/&quot;,
+    http.StripPrefix(
+        &quot;/assets/&quot;,
+        http.FileServer(http.Dir(&quot;assets&quot;)),
+    ),
+)
+</code></pre>
+
+<h3>RPC</h3>
+<p><code>net/rpc</code>(원격 프로시저 호출) 패키지와 <code>net/rpc/jsonrpc</code> 패키지에서는 네트워크를 통해 호출할 수 있는(단지 프로그램 내에서 호출하는 것이 아니라) 메서드를 노출하는 손쉬운 수단을 제공한다.</p>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;net&quot;
+    &quot;net/rpc&quot;
+)
+
+type Server struct {}
+func (this *Server) Negate(i int64, reply *int64) error {
+    *reply = -i
+    return nil
+}
+
+func server() {
+    rpc.Register(new(Server))
+    ln, err := net.Listen(&quot;tcp&quot;, &quot;:9999&quot;)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    for {
+        c, err := ln.Accept()
+        if err != nil {
+            continue
+        }
+        go rpc.ServeConn(c)
+    }
+}
+
+func client() {
+    c, err := rpc.Dial(&quot;tcp&quot;, &quot;127.0.0.1:9999&quot;)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    var result int64
+    err = c.Call(&quot;Server.Negate&quot;, int64(999), &amp;result)
+    if err != nil {
+        fmt.Println(err)
+    } else {
+        fmt.Println(&quot;Server.Negate(999) =&quot;, result)
+    }
+}
+
+func main() {
+    go server()
+    go client()
+
+    var input string
+    fmt.Scanln(&amp;input)
+}
+</code></pre>
+
+<p>이 프로그램은 노출하고자 하는 메서드를 모두 담은 객체를 생성하고 <code>Negate</code> 메서드를 클라이언트에서 호출하고 있다는 점만 제외하면 TCP 예제와 비슷하다. 더 자세한 사항은 <code>net/rpc</code>의 문서를 참고한다.</p>
+<h2 id="section8">13.8 명령줄 인자 파싱</h2>
+<p>터미널에서 명령어를 실행할 때 명령줄 인자를 전달하는 것이 가능하다. <code>go</code> 명령어를 실행할 때도 이렇게 하는 것을 본 적이 있다.</p>
+<pre><code>go run myfile.go
+</code></pre>
+
+<p><code>run</code>과 <code>myfile.go</code>는 인자다. 명령어에 플래그를 전달하는 것도 가능하다.</p>
+<pre><code>go run -v myfile.go
+</code></pre>
+
+<p><code>flag</code> 패키지를 이용하면 프로그램에 전달된 인자와 플래그를 파싱할 수 있다. 다음은 0과 6 사이의 숫자를 생성하는 예제 프로그램이다. 여기서는 프로그램에 플래그(<code>-max=100</code>)을 전달해 최댓값을 변경할 수 있다.</p>
+<pre><code>package main
+
+import (&quot;fmt&quot;;&quot;flag&quot;;&quot;math/rand&quot;)
+
+func main() {
+    // 플래그 정의
+    maxp := flag.Int(&quot;max&quot;, 6, &quot;최댓값&quot;)
+    // 파싱
+    flag.Parse()
+    // 0과 max 사이의 숫자를 생성
+    fmt.Println(rand.Intn(*maxp))
+}
+</code></pre>
+
+<p>플래그가 지정되지 않은 추가 인자는 <code>flag.Args()</code>를 이용해 받을 수 있으며, 이 경우 <code>[]string</code>이 반환된다.</p>
+<h2 id="section9">13.9 동기화 기능</h2>
+<p>Go에서 동시성과 동기화를 처리할 때 선호되는 방법은 10장에서 살펴본 것처럼 고루틴과 채널을 이용하는 것이다. 하지만 Go에서는 <code>sync</code>와 <code>sync/atomic</code> 패키지에서 좀 더 전통적인 다중 스레드 루틴을 제공한다.</p>
+<h3>뮤텍스</h3>
+<p>뮤텍스(상호 배타적인 잠금; mutual exclusive lock)은 한 번에 단 하나의 스레드만이 코드 영역을 제어하게 해서 비원자적인 연산으로부터 공유 자원을 보호하는 데 사용된다. 다음은 뮤텍스를 사용하는 예제다.</p>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;sync&quot;
+    &quot;time&quot;
+)
+func main() {
+    m := new(sync.Mutex)
+
+    for i := 0; i &lt; 10; i++ {
+        go func(i int) {
+            m.Lock()
+            fmt.Println(i, &quot;start&quot;)
+            time.Sleep(time.Second)
+            fmt.Println(i, &quot;end&quot;)
+            m.Unlock()
+        }(i)
+    }
+
+    var input string
+    fmt.Scanln(&amp;input)
+}
+</code></pre>
+
+<p>뮤텍스(<code>m</code>)가 잠기면 그것이 해제되기 전까지 해당 뮤텍스를 잠그려는 다른 어떤 시도도 차단된다. <code>sync/atomic</code> 패키지에서 제공되는 뮤텍스나 다른 동기화 기능을 사용할 때는 세심한 주의를 기울여야 한다.</p>
+<p>전통적인 다중 스레드 프로그래밍은 수월하지 않다. 실수를 저지르기 쉽고 그러한 실수는 찾기가 힘든데, 굉장히 특정한 상황에서, 비교적 드물게 일어나고 발생하는 상황을 재현하기가 어렵기 때문이다. Go의 큰 강점 가운데 하나는 Go에서 제공하는 동시성 기능들이 스레드와 잠금에 비해 이해하고 적절히 사용하기가 훨씬 수월하기 때문이다.</p>
+
+
+<table class="paging"><tr><td class="prev"><a href="12">&larr; 이전</a></td><td><a href="/golang-book">홈</a></td><td class="next"><a href="14">다음 &rarr;</a></td></tr></table>
+
+<div id="adsense" style="height:90px;"></div>
+
+</div>
+
+<div id="footer">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+
+<div id="adsense-loader" style="display:block">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-3361703209991829";
+/* 코딩벗 */
+google_ad_slot = "3024640997";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+
+<script type="text/javascript">
+var loader = document.getElementById('adsense-loader'); 
+document.getElementById("adsense").appendChild(loader);
+</script>
+</body>
+</html>

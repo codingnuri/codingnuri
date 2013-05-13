@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+	<title>Go 프로그래밍 입문 | 변수</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="shortcut icon" href="assets/favicon.ico">
+	<link type="text/css" href="css/style.css" rel="stylesheet" />
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-40817106-1', 'codingbud.com');
+	  ga('send', 'pageview');
+	</script>
+	</head>
+<body>
+<div id="container">
+
+<div>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-3361703209991829";
+/* 코딩벗 */
+google_ad_slot = "3024640997";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+
+<h1>4장 변수</h1>
+<p>지금까지 리터럴 값(숫자, 문자열 등)을 사용하는 프로그램만 살펴봤지만 그러한 프로그램은 그다지 유용하지 않다. 진정 유용한 프로그램을 만들려면 두 가지 새로운 개념이 필요하다. 바로 변수와 제어 흐름 문장이다. 4장에서는 변수에 관해 좀 더 자세히 살펴보겠다.</p>
+<p>변수는 저장 공간이며, 구체적인 타입과 그와 연관된 이름을 가지고 있다. 2장에서 작성한 프로그램이 변수를 사용하도록 수정해 보자.</p>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {
+    var x string = &quot;Hello World&quot;
+    fmt.Println(x)
+}
+</code></pre>
+
+<p>기존 프로그램의 문자열 리터럴이 이 프로그램에도 그대로 나오지만 그것을 곧바로 <code>Println</code> 함수에 전달하는 대신 변수에 할당했다. Go의 변수는 먼저 <code>var</code> 키워드를 이용해 만들어진 다음 변수명(<code>x</code>), 그리고 타입(<code>string</code>)을 지정한 다음 마지막으로 변수에 값(<code>Hello World</code>)을 할당한다. 마지막 단계는 선택 사항이므로 프로그램을 다음과 같은 식으로 작성할 수도 있다.</p>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {
+    var x string
+    x = &quot;Hello World&quot;
+    fmt.Println(x)
+}
+</code></pre>
+
+<p>Go에서의 변수는 대수학에서의 변수와 비슷하지만 몇 가지 미묘한 차이점이 있다.</p>
+<p>먼저 <code>=</code> 기호를 볼 때 우리는 &quot;x는 문자열 Hello World와 같다&quot;라고 읽느 경향이 있다. 위의 프로그램을 그와 같은 식으로 읽는 것도 문제는 없지만 &quot;x는 문자열 Hello World를 가진다&quot;나 &quot;x에는 문자열 Hello World가 할당됐다&quot;로 읽는 편이 더 낫다. 변수는 (변수라는 이름에서 알 수 있듯) 프로그램이 실행되어 종료되기 전까지 값을 변경할 수 있기 때문에 이처럼 구분하는 것이 굉장히 중요하다. 다음과 같은 프로그램을 실행해 보자.</p>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {
+    var x string
+    x = &quot;first&quot;
+    fmt.Println(x)
+    x = &quot;second&quot;
+    fmt.Println(x)
+}
+</code></pre>
+
+<p>사실 다음과 같이 할 수도 있다.</p>
+<pre><code>var x string
+x = &quot;first &quot;
+fmt.Println(x)
+x = x + &quot;second&quot;
+fmt.Println(x)
+</code></pre>
+
+<p>이 프로그램을 대수학의 정리처럼 읽는다면 맞아떨어지지 않을 것이다. 그렇지만 프로그램을 명령어의 나열로 조심스럽게 읽는다면 잘 맞아떨어진다. <code>x = x + &quot;second&quot;</code>를 보면 &quot;변수 x의 값과 문자열 리터럴 second를 연결한 결과를 변수 x에 할당한다&quot;라고 읽을 것이다. <code>=</code>의 오른쪽이 먼저 실행된 후 그 결과가 <code>=</code>의 왼쪽에 할당된다.</p>
+<p><code>x = x + y</code>와 같은 형태는 프로그래밍할 때 굉장히 자주 볼 수 있기 때문에 Go에서는 <code>+=</code>라는 특별한 할당문을 제공한다. 따라서 <code>x = x + &quot;second&quot;</code>를 <code>x += &quot;second&quot;</code>로 작성할 수도 있고 결과도 같다(다른 연산자도 같은 방식으로 사용할 수 있다).</p>
+<p>Go와 대수학 간의 또 다른 차이점은 동일함을 나타낼 때는 <code>==</code>라는 기호를 쓴다는 것이다. (두 개의 등호를 연이어 나오는) <code>==</code>는 <code>+</code>와 비슷한 연산자이며 불린 값을 반환한다. 다음 예를 보자.</p>
+<pre><code>var x string = &quot;hello&quot;
+var y string = &quot;world&quot;
+fmt.Println(x == y)
+</code></pre>
+
+<p>이 프로그램은 <code>false</code>를 반환할 텐데, <code>hello</code>는 <code>world</code>와 같지 않기 때문이다. 반면 다음 코드는</p>
+<pre><code>var x string = &quot;hello&quot;
+var y string = &quot;hello&quot;
+fmt.Println(x == y)
+</code></pre>
+
+<p>두 문자열이 같기 때문에 <code>true</code>를 반환할 것이다.</p>
+<p>초기값이 지정된 변수를 생성하는 것은 Go에서 자주 있는 일이라서 Go에서는 더 짧은 축약형 문장을 지원한다.</p>
+<pre><code>x := &quot;Hello World&quot;
+</code></pre>
+
+<p>여기서 <code>=</code> 앞에 <code>:</code>가 있고 타입을 지정하지 않았다는 점을 눈여겨보자. Go 컴파일러가 변수에 할당하는 리터럴 값을 토대로 타입을 추론할 수 있기 때문에 타입은 필요하지 않다. (문자열 리터럴을 할당하고 있으므로 x에는 <code>string</code> 타입이 지정된다) 컴파일러는 <code>var</code> 문장에서도 타입을 추론할 수 있다.</p>
+<pre><code>var x = &quot;Hello World&quot;
+</code></pre>
+
+<p>다른 타입에 대해서도 이와 같은 원리가 적용된다.</p>
+<pre><code>x := 5
+fmt.Println(x)
+</code></pre>
+
+<p>일반적으로 가능한 한 이러한 축약형을 사용해야 한다.</p>
+<h2 id="section1">4.1 변수의 이름을 짓는 법</h2>
+<p>변수의 이름을 적절하게 지정하는 것은 소프트웨어 개발에서 굉장히 중요한 부분이다. 이름은 반드시 문자로 시작해야 하고 문자나 숫자, 또는 <code>_</code>(밑줄) 기호를 포함할 수 있다. Go  컴파일러는 코드를 작성하는 사람에게(및 다른 사람들에게) 유의미하기만 한다면 어떤 이름을 지정하든 개의치 않는다. 변수의 용도를 명확하게 기술하는 이름을 선택한다. 다음과 같은 코드가 있다고 해보자.</p>
+<pre><code>x := &quot;Max&quot;
+fmt.Println(&quot;My dog's name is&quot;, x)
+</code></pre>
+
+<p>이 경우 x는 변수의 이름으로는 그다지 좋은 이름이 아니다. 더 나은 이름은 다음과 같다.</p>
+<pre><code>name := &quot;Max&quot;
+fmt.Println(&quot;My dog's name is&quot;, name)
+</code></pre>
+
+<p>또는 다음과 같은 이름이 훨씬 더 낫다.</p>
+<pre><code>dogsName := &quot;Max&quot;
+fmt.Println(&quot;My dog's name is&quot;, dogsName)
+</code></pre>
+
+<p>4장에서는 낙타 표기법(또는 혼합 표기법, 울퉁불퉁한 대문자, 낙타등으로도 알려진)으로 알려져 있는 변수명을 구성하는 단어들을 표현하는 특별한 방법을 사용한다. 첫 번째 단어의 첫 글자는 소문자로 쓰고, 이어지는 단어의 첫 번째 글자는 대문자로 쓰고, 나머지 글자는 모두 소문자로 쓴다.</p>
+<h2 id="section2">4.2 유효범위</h2>
+<p>4장을 시작할 때 살펴본 프로그램으로 되돌아가 보자.</p>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {
+    var x string = &quot;Hello World&quot;
+    fmt.Println(x)
+}
+</code></pre>
+
+<p>이 프로그램은 다음과 같은 방법으로도 작성할 수 있다.</p>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+var x string = &quot;Hello World&quot;
+
+func main() {
+    fmt.Println(x)
+}
+</code></pre>
+
+<p>변수를 <code>main</code> 함수 밖으로 옮겼다는 점을 눈여겨본다. 이는 다른 함수에서도 이 변수에 접근할 수 있다는 의미다.</p>
+<pre><code>var x string = &quot;Hello World&quot;
+
+func main() {
+    fmt.Println(x)
+}
+
+func f() {
+    fmt.Println(x)
+}
+</code></pre>
+
+<p>이제 <code>f</code> 함수는 <code>x</code> 변수에 접근할 수 있다. 그럼 이 프로그램을 다음과 같이 작성했다고 해보자.</p>
+<pre><code>func main() {
+    var x string = &quot;Hello World&quot;
+    fmt.Println(x)
+}
+
+func f() {
+    fmt.Println(x)
+}
+</code></pre>
+
+<p>이 프로그램을 실행하면 다음과 같은 오류가 발생할 것이다.</p>
+<pre><code>.\main.go:11: undefined: x
+</code></pre>
+
+<p>컴파일러는 <code>f</code>함수 안에 <code>x</code> 변수가 존재하지 않는다고 말해준다. <code>x</code> 변수는 <code>main</code> 함수 안에만 존재한다. <code>x</code>를 사용하도록 허용되는 공간의 범위를 해당 변수의 <em>유효범위(scope)</em>라 한다. 언어 명세에는 &quot;Go는 블록을 이용해 어휘적 유효범위를 결정한다&quot;라고 돼 있다. 기본적으로 이 문장의 의미는 변수는 중첩된 중괄호(블록)을 포함해서 가장 가까운 중괄호 <code>{</code> <code>}</code>(블록) 내(밖이 아니라)에 존재한다는 것이다. 처음에는 유효범위가 다소 혼동될 수도 있지만 Go 예제를 더 보다 보면 분명하게 이해될 것이다.</p>
+<h2 id="section3">4.3 상수</h2>
+<p>Go에서도 상수(constant)를 지원한다. 기본적으로 상수는 값이 바뀔 수 없다. 상수는 변수와 같은 방식으로 만들어지지만 <code>var</code> 키워드를 사용하는 대신 <code>const</code>라는 키워드를 사용한다.</p>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {
+    const x string = &quot;Hello World&quot;
+    fmt.Println(x)
+}
+</code></pre>
+
+<p>여기서 다음 코드는</p>
+<pre><code>const x string = &quot;Hello World&quot;
+x = &quot;Some other string&quot;
+</code></pre>
+
+<p>컴파일 오류가 발생한다.</p>
+<pre><code>.\main.go:7: cannot assign to x
+</code></pre>
+
+<p>상수는 프로그램 내에서 공통적인 변수를 매번 나올 때마다 작성하지 않고 재사용할 수 있는 좋은 방법이다. 예를 들어, <code>math</code> 패키지의 <code>Pi</code>는 상수로 정의돼 있다.</p>
+<h2 id="section4">4.4 여러 개의 변수 정의</h2>
+<p>Go에서는 변수를 여러 개 정의해야 할 때 이용할 수 있는 축약형을 제공한다.</p>
+<pre><code>var (
+    a = 5
+    b = 10
+    c = 15
+)
+</code></pre>
+
+<p><code>var</code>(또는 <code>const</code>) 키워드 다음에 괄호를 적고 각 변수를 한 줄씩 작성한다.</p>
+<h2 id="section5">4.5 예제 프로그램</h2>
+<p>다음은 사용자가 입력한 숫자를 받아 두 배로 만드는 프로그램이다.</p>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {
+    fmt.Print(&quot;Enter a number: &quot;)
+    var input float64
+    fmt.Scanf(&quot;%f&quot;, &amp;input)
+
+    output := input * 2
+    fmt.Println(output)
+}
+</code></pre>
+
+<p>여기서는 사용자 입력을 읽어들이기 위해 <code>fmt</code> 패키지에서 제공하는 또 다른 함수(<code>Scanf</code>)를 사용했다. <code>&amp;input</code>은 이후 장에서 설명할 테지만 지금 당장은 <code>Scanf</code>가 우리가 입력한 숫자로 input을 채운다는 사실만 알면 된다.</p>
+<h2>연습 문제</h2>
+<ol>
+<li>새로운 변수를 생성하는 두 가지 방법은 무엇인가?</li>
+<li>다음 코드를 실행한 후 <code>x</code>의 값은 무엇인가? <code>x := 5; x += 1</code></li>
+<li>유효범위란 무엇이고 Go에서는 변수의 유효범위를 어떻게 결정하는가?</li>
+<li><code>var</code>와 <code>const</code>의 차이점은 무엇인가?</li>
+<li>예제 프로그램을 출발점으로 삼아 화씨를 섭씨로 변환하는 프로그램을 작성하라. (<code>C = (F - 32) * 5/9)</code>)</li>
+<li>피트를 미터로 변환하는 프로그램을 하나 더 작성하라. (<code>1 ft = 0.3048 m</code>)</li>
+</ol>
+
+
+<table class="paging"><tr><td class="prev"><a href="3">&larr; 이전</a></td><td><a href="/golang-book">홈</a></td><td class="next"><a href="5">다음 &rarr;</a></td></tr></table>
+
+<div id="adsense" style="height:90px;"></div>
+
+</div>
+
+<div id="footer">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+
+<div id="adsense-loader" style="display:block">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-3361703209991829";
+/* 코딩벗 */
+google_ad_slot = "3024640997";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+
+<script type="text/javascript">
+var loader = document.getElementById('adsense-loader'); 
+document.getElementById("adsense").appendChild(loader);
+</script>
+</body>
+</html>

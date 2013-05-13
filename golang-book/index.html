@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<title>Go 프로그래밍 입문</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="assets/favicon.ico">
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40817106-1', 'codingbud.com');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+<div id="container">
+
+<p><img class="block" src="assets/cover.png" alt="cover" /></p>
+<h2>설치 프로그램</h2>
+<p>먼저 Go를 설치한 후 텍스트 편집기를 설치한다.</p>
+<ul>
+<li><a href="http://www.golang-book.com/installers/go-install.exe">윈도우</a></li>
+<li>OSX(<a href="http://www.golang-book.com/installers/go-install-x86.pkg">32비트</a>, <a href="http://www.golang-book.com/installers/go-install-x64.pkg">64비트</a>)</li>
+</ul>
+<h2>책 소개</h2>
+<p><em>Go 프로그래밍 입문(An Introduction to Programming in Go)</em></p>
+<p>Copyright © 2012 by Caleb Doxsey
+ISBN: 978-1478355823</p>
+<p>이 책은 《An Introduction to Programming in Go》의 한국어판입니다. 원서는 Amazon.com에서 <a href="http://www.amazon.com/An-Introduction-Programming-Go-ebook/dp/B0095MCNAO/">킨들</a>이나 <a href="http://www.amazon.com/An-Introduction-Programming-Caleb-Doxsey/dp/1478355824">종이책</a>으로 구입할 수 있습니다. 또는 아래와 같이 인터넷 상에서도 무료로 읽을 수 있으며, 원서 PDF는 <a href="http://www.golang-book.com/assets/pdf/gobook.pdf">이곳</a>에서 내려받으실 수 있습니다.</p>
+<p>질문, 조언, 오류와 관련된 내용은 <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#97;&#x64;&#109;&#x69;&#x6e;&#x40;&#103;&#x6f;&#108;&#97;&#x6e;&#x67;&#x2d;&#98;&#111;&#x6f;&#107;&#46;&#x63;&#x6f;&#x6d;">&#xc800;&#51088;</a>에게, 오탈자와 같은 번역과 관련된 내용은 <a href="&#x6d;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#97;&#x64;&#x6d;&#105;n&#64;&#x63;&#x6f;di&#x6e;&#x67;&#x62;&#x75;&#100;&#46;&#99;&#111;&#x6d;">&#xbc88;역&#51088;</a>에게 보내주세요.</p>
+<h2>목차</h2>
+<ol>
+<li>
+<a href="1">시작하기</a>
+<ul>
+<li><a href="1#section1">파일과 폴더</a></li>
+<li><a href="1#section2">터미널</a></li>
+<li><a href="1#section3">텍스트 편집기</a></li>
+<li><a href="1#section4">Go 도구</a></li>
+</ul>
+</li>
+<li>
+<a href="2">첫 번째 프로그램</a>
+<ul>
+<li><a href="2#section1">Go 프로그램을 읽는 법</a></li>
+</ul>
+</li>
+<li>
+<a href="3">타입</a>
+<ul>
+<li><a href="3#section1">숫자</a></li>
+<li><a href="3#section2">문자열</a></li>
+<li><a href="3#section3">불린</a></li>
+</ul>
+</li>
+<li>
+<a href="4">변수</a>
+<ul>
+<li><a href="4#section1">변수의 이름을 짓는 법</a></li>
+<li><a href="4#section2">유효범위</a></li>
+<li><a href="4#section3">상수</a></li>
+<li><a href="4#section4">여러 개의 변수 정의</a></li>
+<li><a href="4#section5">예제 프로그램</a></li>
+</ul>
+</li>
+<li>
+<a href="5">제어 구조</a>
+<ul>
+<li><a href="5#section1">For</a></li>
+<li><a href="5#section2">If</a></li>
+<li><a href="5#section3">Switch</a></li>
+</ul>
+</li>
+<li>
+<a href="6">배열, 슬라이스, 맵</a>
+<ul>
+<li><a href="6#section1">배열</a></li>
+<li><a href="6#section2">슬라이스</a></li>
+<li><a href="6#section3">맵</a></li>
+</ul>
+</li>
+<li>
+<a href="7">함수</a>
+<ul>
+<li><a href="7#section1">두 번째 함수</a></li>
+<li><a href="7#section2">다중값 반환</a></li>
+<li><a href="7#section3">가변 함수</a></li>
+<li><a href="7#section4">클로저</a></li>
+<li><a href="7#section5">재귀</a></li>
+<li><a href="7#section6">지연, 패닉, 복구</a></li>
+</ul>
+</li>
+<li>
+<a href="8">포인터</a>
+<ul>
+<li><a href="8#section1">*와 &amp; 연산자</a></li>
+<li><a href="8#section2">new</a></li>
+</ul>
+</li>
+<li>
+<a href="9">구조체와 인터페이스</a>
+<ul>
+<li><a href="9#section1">구조체</a></li>
+<li><a href="9#section2">메서드</a></li>
+<li><a href="9#section3">인터페이스</a></li>
+</ul>
+</li>
+<li>
+<a href="10">동시성</a>
+<ul>
+<li><a href="10#section1">고루틴</a></li>
+<li><a href="10#section2">채널</a></li>
+</ul>
+</li>
+<li>
+<a href="11">패키지</a>
+<ul>
+<li><a href="11#section1">패키지 생성</a></li>
+<li><a href="11#section2">문서화</a></li>
+</ul>
+</li>
+<li><a href="12">테스트</a></li>
+<li>
+<a href="13">핵심 패키지</a>
+<ul>
+<li><a href="13#section1">문자열</a></li>
+<li><a href="13#section2">입출력</a></li>
+<li><a href="13#section3">파일과 폴더</a></li>
+<li><a href="13#section4">오류</a></li>
+<li><a href="13#section5">컨테이너와 정렬</a></li>
+<li><a href="13#section6">해시와 암호화</a></li>
+<li><a href="13#section7">서버</a></li>
+<li><a href="13#section8">명령줄 인자 파싱</a></li>
+<li><a href="13#section9">동기화 기능</a></li>
+</ul>
+</li>
+<li>
+<a href="14">다음 단계</a>
+<ul>
+<li><a href="14#section1">대가를 연구한다</a></li>
+<li><a href="14#section2">뭔가를 만든다</a></li>
+<li><a href="14#section3">협업</a></li>
+</ul>
+</li>
+</ol>
+
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-3361703209991829";
+/* 코딩벗 */
+google_ad_slot = "3024640997";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+<div id="footer">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+
+</body>
+</html>

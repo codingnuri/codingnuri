@@ -34,7 +34,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 <h1>12장 테스트</h1>
 <p>프로그래밍은 쉽지 않다. 최고의 프로그래머들조차도 늘 정확히 의도한 대로 동작하는 프로그램을 작성하는 능력은 갖추고 있지 않다. 따라서 소프트웨어 개발 프로세스의 중요한 부분 중 하나는 바로 테스트다. 우리가 작성한 코드에 대한 테스트를 작성하는 것은 품질을 보장하고 가독성을 향상시키는 좋은 방법이다.</p>
 <p>Go에는 테스트를 작성하기 쉽게 만들어 주는 특별한 프로그램이 포함돼 있으니 11장에서 만든 패키지에 대한 테스트를 만들어 보자. <code>chapter11</code> 안의 <code>math</code> 폴더에서 <code>math_test.go</code>라는 파일을 하나 만들고 다음과 같은 내용을 입력한다.</p>
-<pre><code>package math
+<pre class="brush: go">package math
 
 import &quot;testing&quot;
 
@@ -45,7 +45,7 @@ func TestAverage(t *testing.T) {
         t.Error(&quot;Expected 1.5, got &quot;, v)
     }
 }
-</code></pre>
+</pre>
 
 <p>이제 다음 명령어를 실행한다.</p>
 <pre><code>go test
@@ -59,7 +59,7 @@ ok      golang-book/chapter11/math      0.032s
 
 <p><code>go test</code> 명령을 실행하면 현재 폴더에 들어 있는 파일에서 테스트를 찾아 실행한다. 함수의 이름이 <code>Test</code>라는 단어로 시작하고 <code>*testing.T</code>를 인자로 받으면 테스트로 간주된다. 예제의 경우 <code>Average</code> 함수를 테스트하고 있으므로 테스트 함수의 이름으로 <code>TestAverage</code>를 지정했다.</p>
 <p>테스트 함수가 준비되면 테스트할 코드를 사용하는 테스트를 작성한다. 예제의 경우 <code>[1,2]</code>의 평균은 <code>1.5</code>임을 알고 있으므로 이를 검사하겠다. 다양한 숫자 조합을 많이 테스트하는 것이 좋을 테니 테스트 프로그램을 조금 변경해 보자.</p>
-<pre><code>package math
+<pre class="brush: go">package math
 
 import &quot;testing&quot;
 
@@ -86,7 +86,7 @@ func TestAverage(t *testing.T) {
         }
     }
 }
-</code></pre>
+</pre>
 
 <p>위 코드는 테스트를 준비할 때 흔히 쓰는 방법이다(Go에 포함된 소스코드에서 다양한 예제를 찾아볼 수 있다). 여기서는 <code>struct</code>를 이용해 함수의 입력과 출력을 표현했다. 그런 다음 이러한 <code>struct</code>(쌍)의 리스트를 만들었다. 마지막으로 리스트의 원소를 순회하면서 함수를 실행했다.</p>
 <h2>연습문제</h2>
@@ -121,4 +121,18 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </div>
 
 </body>
-</html>
+<link type="text/css" href="css/shCore.css" rel="stylesheet" />
+<link type="text/css" href="css/shThemeEclipse.css" rel="stylesheet" />
+<script type="text/javascript" src="js/shCore.js"></script>
+<script type="text/javascript" src="js/shAutoloader.js" ></script>
+<script type="text/javascript" src="js/shBrushGo.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+  'go Go js/shBrushGo.js'
+);
+SyntaxHighlighter.defaults['toolbar'] = false;
+SyntaxHighlighter.defaults['gutter'] = false;
+SyntaxHighlighter.all();
+</script>
+
+</html>

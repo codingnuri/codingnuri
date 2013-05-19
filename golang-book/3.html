@@ -61,14 +61,14 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 <p>Go에는 <code>float32</code>와 <code>float64</code>라는 두 가지 부동 소수점 타입(각각 단정도 부동 소수점 수와 배정도 부동 소수점 수라고도 한다)을 비롯해 <code>complex64</code>와 <code>complex128</code>이라고 하는 복소수(허수부가 있는 숫자)를 나타내는 두 가지 타입이 있다. 일반적으로 여기서는 부동 소수점 수를 사용할 때 <code>float64</code>를 사용할 것이다.</p>
 <h3>예제</h3>
 <p>숫자를 사용하는 예제 프로그램을 작성해 보자. 먼저 <code>chapter3</code>이라는 폴더를 만들고 다음과 같은 내용이 담긴 <code>main.go</code> 파일을 만든다.</p>
-<pre><code>package main
+<pre class="brush: go">package main
 
 import &quot;fmt&quot;
 
 func main() {
     fmt.Println(&quot;1 + 1 =&quot;, 1 + 1)
 }
-</code></pre>
+</pre>
 
 <p>프로그램을 실행하면 다음과 같은 결과가 출력된다.</p>
 <pre><code>$ go run main.go
@@ -76,8 +76,8 @@ func main() {
 </code></pre>
 
 <p>이 프로그램은 2장에서 작성한 프로그램과 매우 비슷하다. 똑같이 패키지 선언과 임포트 선언이 있고 함수 선언과 <code>Println</code> 함수를 사용한다는 점까지 동일하다. 그런데 이번에는 <code>Hello World</code>라는 문자열을 출력하는 대신 <code>1 + 1 =</code>이라는 문자열에 이어 <code>1 + 1</code>이라는 수식의 결과를 출력한다. 이 수식은 세 부분으로 구성돼 있다. 숫자 리터럴인 <code>1</code>(<code>int</code> 타입에 해당)과 <code>+</code> 연산자(덧셈을 나타내는), 그리고 또 다른 숫자 리터럴인 <code>1</code>로 구성돼 있다. 이번에는 부동 소수점 수를 이용해 같은 작업을 수행해 보자.</p>
-<pre><code>fmt.Println(&quot;1 + 1 =&quot;, 1.0 + 1.0)
-</code></pre>
+<pre class="brush: go">fmt.Println(&quot;1 + 1 =&quot;, 1.0 + 1.0)
+</pre>
 
 <p>여기서는 <code>.0</code>을 사용해 Go가 이것이 정수가 아니라 부동 소수점 수라는 사실을 알게 했다. 이 프로그램을 실행하면 이전과 동일한 결과가 출력될 것이다.</p>
 <p>Go에는 덧셈뿐 아니라 다른 여러 연산자도 있다.</p>
@@ -115,7 +115,7 @@ func main() {
 <p>2장에서 본 것과 마찬가지로 문자열은 텍스트를 표현하는 데 사용되는 길이가 정해진 문자의 나열이다. Go 언어의 문자열은 개별 바이트로 구성돼 있으며, 보통 각 문자마다 한 바이트를 차지한다(중국어 같은 다른 언어의 문자는 한 바이트 이상으로 표현된다).</p>
 <p>문자열 리터럴은 <code>&quot;Hello World&quot;</code>처럼 큰 따옴표를 이용하거나 <code>Hello World</code>처럼 역따옴표를 이용해 생성할 수 있다. 이러한 두 방법의 차이점은 큰따옴표로 만든 문자열은 줄바꿈을 포함할 수 없고 특별한 이스케이프 문자열을 사용할 수 있다는 점이다. 예를 들어, <code>\n</code>은 줄바꿈으로 대체되고 <code>\t</code>는 탭 문자로 대체된다.</p>
 <p>문자열에 대해 자주 사용되는 연산으로는 문자열의 길이를 구하거나(<code>len(&quot;Hello World&quot;)</code>) 문자열 내의 각 문자에 접근하거나(<code>&quot;Hello World&quot;[1]</code>) 두 문자열을 하나로 합치는(<code>&quot;Hello &quot; + &quot;World&quot;</code>) 것이 있다. 앞에서 만든 프로그램을 수정해 이를 시험해 보자.</p>
-<pre><code>package main
+<pre class="brush: go">package main
 
 import &quot;fmt&quot;
 
@@ -124,7 +124,7 @@ func main() {
     fmt.Println(&quot;Hello World&quot;[1])
     fmt.Println(&quot;Hello &quot; + &quot;World&quot;)
 }
-</code></pre>
+</pre>
 
 <p>여기서 몇 가지 알아야 할 사항은 다음과 같다.</p>
 <ol>
@@ -163,14 +163,14 @@ func main() {
 </tbody>
 </table>
 <p>다음은 불린 연산자를 어떻게 사용할 수 있는지 보여주는 프로그램이다.</p>
-<pre><code>func main() {
+<pre class="brush: go">func main() {
     fmt.Println(true &amp;&amp; true)
     fmt.Println(true &amp;&amp; false)
     fmt.Println(true || true)
     fmt.Println(true || false)
     fmt.Println(!true)
 }
-</code></pre>
+</pre>
 
 <p>이 프로그램을 실행하면 다음과 같이 출력될 것이다.</p>
 <pre><code>$ go run main.go
@@ -284,4 +284,18 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </div>
 
 </body>
-</html>
+<link type="text/css" href="css/shCore.css" rel="stylesheet" />
+<link type="text/css" href="css/shThemeEclipse.css" rel="stylesheet" />
+<script type="text/javascript" src="js/shCore.js"></script>
+<script type="text/javascript" src="js/shAutoloader.js" ></script>
+<script type="text/javascript" src="js/shBrushGo.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+  'go Go js/shBrushGo.js'
+);
+SyntaxHighlighter.defaults['toolbar'] = false;
+SyntaxHighlighter.defaults['gutter'] = false;
+SyntaxHighlighter.all();
+</script>
+
+</html>

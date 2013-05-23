@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title> 자바스크립트 불린 | 자바스크립트 자습서 </title>
+<link type="text/css" href="/css/style.css" rel="stylesheet" />
+</head>
+<body>
+<div id="container">
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<h1>자바스크립트 불린</h1>
+
+<p>자바스크립트 불린(boolean) 자료형에는 참(true)과 거짓(false)라는 두 개의 값밖에 없다.</p>
+
+<p>보통 불린 값은 비교의 결과에 해당하며 자바스크립트의 제어 구조에 사용된다.</p>
+
+<h2>자바스크립트 불린형 변환</h2>
+
+<p>불린 값이 숫자 연산에 사용되면 참은 숫자 1로, 거짓은 숫자 0으로 변환된다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">var boolean1 = true;            
+var boolean2 = false;   
+console.log(0 + boolean1);  // 1
+console.log(0 + boolean2);  // 0
+</pre>
+
+<p>불린 값이 문자열 연산에 사용되면 참은 "true"라는 문자열로, 거짓은 "false"라는 문자열로 변환된다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">var boolean1 = true;            
+var boolean2 = false;   
+console.log("" + boolean1); // "true"
+console.log("" + boolean2); // "false"
+</pre>
+
+<p>불린 값이 예상되는 곳에 숫자가 사용되면 해당 숫자가 거짓으로 변환되는 0이나 NaN이 아닌 이상 참으로 변환된다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">var number1 = 1;            
+var number2 = -1;
+var number3 = 0;
+var number4 = NaN;
+console.log(!!number1);     // true
+console.log(!!number2);     // true
+console.log(!!number3);     // false
+console.log(!!number4);     // false
+</pre>
+
+<p>불린 값이 예상되는 곳에 문자열이 사용되면 거짓으로 변환되는 빈 문자열인 경우를 제외하고 해당 문자열은 참으로 변환된다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">var string1 = "abc";            
+var string2 = "false";          
+var string3 = "";           
+console.log(!!string1);     // true
+console.log(!!string2);     // true
+console.log(!!string3);     // false
+</pre>
+
+<p><em>null</em>과 <em>undefined</em> 값은 거짓으로 변환되며 널이 아닌 객체나 배열, 함수는 참으로 변환된다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">var var1 = null;
+var var2 = undefined;
+var var3 = [];      // 빈 배열
+var var4 = {};      // 빈 객체
+console.log(!!var1);    // false
+console.log(!!var2);    // false
+console.log(!!var3);    // true
+console.log(!!var4);    // true
+</pre>
+
+<h2>Boolean() 생성자를 이용한 변환</h2>
+
+<p>불린 값으로 변환하는 명시적인 방법은 Boolean() 생성자를 호출하는 것이다.</p>
+
+<pre class="brush: js;">console.log(Boolean(1));    // true
+console.log(Boolean(-1));   // true
+console.log(Boolean(0));    // false
+console.log(Boolean(NaN));  // false
+console.log(Boolean("abc"));    // true
+console.log(Boolean("false"));  // true
+console.log(Boolean(""));   // false
+console.log(Boolean(null)); // false
+console.log(Boolean(undefined));// false
+console.log(Boolean([]));   // true
+console.log(Boolean({}));   // true
+</pre>
+
+<h2>관련 수업</h2>
+
+<ul>
+<li><a href="javascript-datatypes-overview.html">자바스크립트 자료형 소개</a></li>
+<li><a href="javascript-strings.html">자바스크립트 문자열</a></li>
+<li><a href="javascript-numbers.html">자바스크립트 숫자</a></li>
+<li><a href="javascript-boolean.html">자바스크립트 불린</a></li>
+<li><a href="javascript-objects.html">자바스크립트 객체</a></li>
+<li><a href="javascript-functions.html">자바스크립트 함수</a></li>
+<li><a href="javascript-arrays.html">자바스크립트 배열</a></li>
+<li><a href="javascript-null.html">자바스크립트 null</a></li>
+<li><a href="javascript-undefined.html">자바스크립트 undefined</a></li>
+<li><a href="javascript-datatype-detection.html">자바스크립트 자료형 검사</a></li>
+</ul>
+
+
+
+<table class="paging"><tr><td class="prev"><a href="javascript-numbers.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="javascript-objects.html">다음 &rarr;</a></td></tr></table>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+<div id="footer">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+</body>
+
+<link type="text/css" href="/css/shCore.css" rel="stylesheet" />
+<link type="text/css" href="/css/shThemeEclipse.css" rel="stylesheet" />
+<script type="text/javascript" src="/js/shCore.js"></script>
+<script type="text/javascript" src="/js/shAutoloader.js"></script>
+<script type="text/javascript" src="/js/shBrushJScript.js"></script>
+<script type="text/javascript" src="/js/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+  'js jscript javascript  js/shBrushJScript.js'
+);
+SyntaxHighlighter.defaults['toolbar'] = false;
+SyntaxHighlighter.defaults['gutter'] = false;
+SyntaxHighlighter.defaults['html-script'] = true;
+SyntaxHighlighter.all();
+</script>
+
+</html>

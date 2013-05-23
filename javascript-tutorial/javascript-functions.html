@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title> 자바스크립트 함수 | 자바스크립트 자습서 </title>
+<link type="text/css" href="/css/style.css" rel="stylesheet" />
+</head>
+<body>
+<div id="container">
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<h1>자바스크립트 함수</h1>
+
+<p><strong>자바스크립트 함수</strong>는 실행 가능한 코드가 담긴 특별한 객체다. 함수는 여러 번 호출될 수 있고, 인자를 전달받을 수 있다.</p>
+
+<p>자바스크립트에서 함수는 숫자와 문자열과 같은 자료형이자 값이므로 변수, 배열, 객체에 저장될 수 있으며 다른 함수에 인자로 전달할 수 있다.</p>
+
+<p>함수를 객체의 프로퍼티로 할당할 경우 해당 함수를 그 객체의 <em>메서드</em>라 한다.</p>
+
+<h2>자바스크립트 함수 선언</h2>
+
+<p>함수 선언문을 이용해 함수를 생성할 수 있으며, 문법은 다음과 같다.</p>
+
+<pre class="brush: js;">function function_name(arg1, arg2, ...){
+    // 함수 본문
+}
+</pre>
+
+<p>함수는 코드상의 어느 곳에도 선언할 수 있으며, 함수 선언은 브라우저가 코드를 실행하기 위해 준비하는 단계인 실행 전 단계(pre-execution stage)에서 파싱된다.</p>
+
+<p>함수는 정의하기 전이나 후에 호출할 수 있다. 함수 선언의 예는 다음과 같다.</p>
+
+<pre class="brush: js;">sayHello('Tom');        // Hello, I am Tom
+
+function sayHello(name){
+    console.log("Hello, I am " + name);
+}
+</pre>
+
+<h2>자바스크립트 함수 표현식</h2>
+
+<p>자바스크립트 함수 표현식은 <em>function</em> 키워드로 정의하며, 다음으로 선택적인 함수명과 괄호로 둘러싸인 인자 목록, 중괄호로 둘러싸인 함수 본문이 차례로 이어진다. 문법은 다음과 같다.</p>
+
+<pre class="brush: js;">function(arg1, arg2, ...){
+    // 함수 본문
+}
+</pre>
+
+<p>함수 표현식은 다른 자바스크립트 표현식 내에서 나타날 수 있는데, 값을 집어넣을 수 있는 곳이라면 어떤 곳이든 함수 표현식을 집어넣을 수 있다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">var sayHello = function(name){
+    console.log("Hello, I am " + name);
+}
+sayHello('Tom');        // Hello, I am Tom
+</pre>
+
+<p>함수 표현식은 그것들이 실행될 때만 생성되므로 실행되고 난 후에야 사용될 수 있다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">sayHello('Tom');        // TypeError: sayHello is not a function
+var sayHello = function(name){
+    console.log("Hello, I am " + name);
+}
+</pre>
+
+<h2>값을 반환하는 자바스크립트 함수</h2>
+
+<p>함수에서는 <em>return</em> 문을 이용해 값을 반환할 수 있다.</p>
+
+<pre class="brush: js;">function multiply(x, y){
+    return x*y;
+}
+console.log(multiply(5,5)); // 25
+</pre>
+
+<p>값을 반환하지 않는 함수는 <em>undefined</em>를 반환한다.</p>
+
+<pre class="brush: js;">function multiply(x, y){
+    var result = x*y;
+}
+console.log(multiply(5,5)); // undefined
+</pre>
+
+<p>빈 리턴문도 <em>undefined</em>를 반환한다.</p>
+
+<pre class="brush: js;">function multiply(x, y){
+    var result = x*y;
+    return;
+}
+console.log(multiply(5,5)); // undefined
+</pre>
+
+<h2>지역 변수</h2>
+
+<p>함수 안에서 <em>var</em>를 이용해 변수를 정의할 수 있는데, 이렇게 정의한 변수를 지역 변수라 하며 해당 함수 내에서만 접근할 수 있다.</p>
+
+<pre class="brush: js;">function multiply(x, y){
+    var result = x*y;
+    return result;
+}
+console.log(multiply(5,5)); // 25
+console.log(result);        // ReferenceError: result is not defined
+</pre>
+
+<h2>자바스크립트 함수는 값이다</h2>
+
+<p>자바스크립트 함수는 평범한 값이며, 선언과 표현식에서 모두 변수를 선언하고 함수를 해당 변수에 집어넣는다.</p>
+
+<p>다음과 같이 함수를 다른 변수에 할당하는 것도 가능하다.</p>
+
+<pre class="brush: js;">function multiply(x, y){
+    return x*y;
+}
+var m = multiply;
+console.log(m(5,5));        // 25
+</pre>
+
+<p>함수는 참조로 할당되므로 <em>m</em>과 <em>multiply</em> 변수는 모두 같은 함수를 참조한다.</p>
+
+<p>함수를 다른 함수에 인자로 전달하는 것도 가능하다.</p>
+
+<pre class="brush: js;">function multiply(x, y){
+    return x*y;
+}
+
+function doSomething(f){
+    return f(5,5);
+}
+
+console.log(doSomething(multiply));     // 25
+</pre>
+
+<h2>스스로 호출하는 자바스크립트 익명 함수</h2>
+
+<p>자바스크립트에서는 일반적으로 함수를 특정 시점에 정의하고 나중에 해당 함수를 호출한다. 스스로 호출하는 함수를 이용하면 브라우저에서 함수 정의를 파싱할 때 해당 함수가 실행된다. 문법은 다음과 같다.</p>
+
+<pre class="brush: js;">(function () {
+    // 함수 본문
+}());
+</pre>
+
+<p>보다시피 괄호 안에 함수를 집어넣을 필요가 있는데, 스스로 호출하는 함수는 반드시 함수 표현식이어야 하기 때문이다. 또 다른 문법은 다음과 같다.</p>
+
+<pre class="brush: js;">(function () {
+    // 함수 본문
+})();
+</pre>
+
+<p>스스로 호출하는 함수의 이점은 코드를 한 번 실행해야 하지만 전역 또는 심지어 지역 변수로도 선언하고 싶지 않은 경우다. 예제에서는 함수에 대한 참조를 유지하지 않았다. 함수가 초기화되고 나서 구문 끝의 () 때문에 함수가 곧바로 호출된다.</p>
+
+<p>이 방법은 초기화할 때 굉장히 유용한데, 함수에 대한 참조를 유지하지 않기 때문에 딱 한 번만 수행되게 할 수 있다.</p>
+
+<p>다음 예제를 보자.</p>
+
+<pre class="brush: js;">(function (){
+    console.log("Hello world!");    // Hello world!
+})();
+</pre>
+
+<p>스스로 호출하는 함수에 매개변수를 전달할 수도 있다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">var result = (function (x, y){
+    return x*y;
+})(6,6);
+console.log(result);    // 36
+</pre>
+
+<p>아울러 다른 전역 객체에 대한 참조를 갖게 하는 것이 일반적인 관례다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">(function (w, d, $) {
+   // 함수 본문
+}(window, document, jQuery));
+</pre>
+
+<h2>스스로 호출하는 자바스크립트 명명 함수</h2>
+
+<p>스스로 호출하는 함수에 이름을 부여할 수도 있지만 이름은 해당 함수 안에서만 볼 수 있다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">(function sayHello(){
+    console.log(sayHello); //함수의 소스 코드를 출력
+})();
+
+console.log(sayHello);     //ReferenceError: sayHello is not defined
+</pre>
+
+<p>이름을 지정함 함수는 재귀 호출에 사용할 수 있다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">var result = (function factorial(n){
+    return n == 1? n: n*factorial(n-1)
+})(6);
+
+console.log(result);    // 720
+</pre>
+
+<h2>관련 수업</h2>
+
+<ul>
+<li><a href="javascript-datatypes-overview.html">자바스크립트 자료형 소개</a></li>
+<li><a href="javascript-strings.html">자바스크립트 문자열</a></li>
+<li><a href="javascript-numbers.html">자바스크립트 숫자</a></li>
+<li><a href="javascript-boolean.html">자바스크립트 불린</a></li>
+<li><a href="javascript-objects.html">자바스크립트 객체</a></li>
+<li><a href="javascript-functions.html">자바스크립트 함수</a></li>
+<li><a href="javascript-arrays.html">자바스크립트 배열</a></li>
+<li><a href="javascript-null.html">자바스크립트 null</a></li>
+<li><a href="javascript-undefined.html">자바스크립트 undefined</a></li>
+<li><a href="javascript-datatype-detection.html">자바스크립트 자료형 검사</a></li>
+</ul>
+
+
+
+<table class="paging"><tr><td class="prev"><a href="javascript-objects.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="javascript-arrays.html">다음 &rarr;</a></td></tr></table>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+<div id="footer">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+</body>
+
+<link type="text/css" href="/css/shCore.css" rel="stylesheet" />
+<link type="text/css" href="/css/shThemeEclipse.css" rel="stylesheet" />
+<script type="text/javascript" src="/js/shCore.js"></script>
+<script type="text/javascript" src="/js/shAutoloader.js"></script>
+<script type="text/javascript" src="/js/shBrushJScript.js"></script>
+<script type="text/javascript" src="/js/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+  'js jscript javascript  js/shBrushJScript.js'
+);
+SyntaxHighlighter.defaults['toolbar'] = false;
+SyntaxHighlighter.defaults['gutter'] = false;
+SyntaxHighlighter.defaults['html-script'] = true;
+SyntaxHighlighter.all();
+</script>
+
+</html>

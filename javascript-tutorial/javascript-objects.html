@@ -2,8 +2,10 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title> 자바스크립트 객체 | 자바스크립트 자습서 </title>
+<title>객체 | 자바스크립트 자습서</title>
 <link type="text/css" href="css/style.css" rel="stylesheet" />
+<meta name="description" content="자바스크립트 객체 자습서와 예제, 자바스크립트 객체 생성, 생성자 함수 및 new 연산자, 존재하지 않는 프로퍼티에 접근, 프로퍼티가 존재하는지 여부 확인, 자바스크립트 객체 참조, 자바스크립트 객체 메서드">
+<meta name="keywords" content="자바스크립트 객체, 자바스크립트 객체 자료형, Object">
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -29,7 +31,7 @@ google_ad_height = 90;
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
 
-<h1>자바스크립트 객체</h1>
+<h1>객체</h1>
 
 <p><strong>자바스크립트 객체</strong>는 이름이 지정된 값(키-값의 쌍)의 모음을 나타낸다. 보통 객체의 값을 객체의 프로퍼티(property)라고 한다. 자바스크립트 객체의 프로퍼티에는 함수, 배열, 다른 객체를 비롯해 어떤 타입의 데이터도 담을 수 있다.</p>
 
@@ -139,7 +141,7 @@ console.log('name' in user);        // true
 console.log('address' in user);     // false
 </pre>
 
-<h2>자바스크립트 객체의 프로퍼티 순회하기</h2>
+<h2>객체의 프로퍼티 순회하기</h2>
 
 <p><em>for…in</em> 문법릉 이용해 자바스크립트 객체의 모든 프로퍼티를 나열할 수 있다. 다음 예제를 보자.</p>
 
@@ -165,7 +167,7 @@ key = address, value = [object Object]
 key = email, value = 
 </pre>
 
-<h2>자바스크립트 객체 참조</h2>
+<h2>객체 참조</h2>
 
 <p>객체를 변수에 할당할 때 해당 변수는 객체에 대한 참조를 유지한다. 이 변수를 사용해 객체의 프로퍼티를 변경하면 객체를 참조하고 있던 다른 곳에도 영향을 미친다. 다음 예제를 보자.</p>
 
@@ -200,7 +202,7 @@ changeName(user);
 console.log(user);      // Tom, 이름이 바뀌지 않음
 </pre>
 
-<h2>자바스크립트 객체 메서드</h2>
+<h2>객체 메서드</h2>
 
 <p>자바스크립트 객체에는 함수를 저장할 수도 있는데, 이러한 함수를 보통 <strong>메서드(method)</strong>라 한다.</p>
 
@@ -222,16 +224,16 @@ user.printName();   // TOM AND JERRY
 <h2>관련 수업</h2>
 
 <ul>
-<li><a href="javascript-datatypes-overview.html">자바스크립트 자료형 소개</a></li>
-<li><a href="javascript-strings.html">자바스크립트 문자열</a></li>
-<li><a href="javascript-numbers.html">자바스크립트 숫자</a></li>
-<li><a href="javascript-boolean.html">자바스크립트 불린</a></li>
-<li><a href="javascript-objects.html">자바스크립트 객체</a></li>
-<li><a href="javascript-functions.html">자바스크립트 함수</a></li>
-<li><a href="javascript-arrays.html">자바스크립트 배열</a></li>
-<li><a href="javascript-null.html">자바스크립트 null</a></li>
-<li><a href="javascript-undefined.html">자바스크립트 undefined</a></li>
-<li><a href="javascript-datatype-detection.html">자바스크립트 자료형 검사</a></li>
+<li><a href="javascript-datatypes-overview.html">자료형 소개</a></li>
+<li><a href="javascript-strings.html">문자열</a></li>
+<li><a href="javascript-numbers.html">숫자</a></li>
+<li><a href="javascript-boolean.html">불린</a></li>
+<li><a href="javascript-objects.html">객체</a></li>
+<li><a href="javascript-functions.html">함수</a></li>
+<li><a href="javascript-arrays.html">배열</a></li>
+<li><a href="javascript-null.html">null</a></li>
+<li><a href="javascript-undefined.html">undefined</a></li>
+<li><a href="javascript-datatype-detection.html">자료형 검사</a></li>
 </ul>
 
 

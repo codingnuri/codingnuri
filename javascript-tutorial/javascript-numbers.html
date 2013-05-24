@@ -4,6 +4,15 @@
 <meta charset="utf-8" />
 <title> 자바스크립트 숫자 | 자바스크립트 자습서 </title>
 <link type="text/css" href="css/style.css" rel="stylesheet" />
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40877373-1', 'codingnuri.com');
+  ga('send', 'pageview');
+</script>
 </head>
 <body>
 <div id="container">
@@ -149,18 +158,20 @@ console.log(string1.length);    // 3
 <ul>
 <li>toFixed()는 숫자를 문자열로 변환하고 지정한 소수점 이후에 지정된 자릿수만큼 보여준다.</li>
 <li>toExponential()은 지수 표기법을 이용해 숫자를 문자열로 변환한다. 이때 소수점 앞에 한 자릿수로 나타내고 소수점 이후에는 지정된 자릿수만큼 표현한다.</li>
-<li><p>toPrecision()은 지정된 유효 숫자 자릿수를 이용해 숫자를 변환한다. 이때 유효 숫자 자릿수의 숫자가 변환할 숫자의 전체 정수부를 표시할 만큼 충분하지 않다면 지수 표기법을 사용한다.</p>
-
-<p>  var n = 123456.789;
-  console.log(n.toFixed(0));      //123457
-  console.log(n.toFixed(2));      //123456.79
-  console.log(n.toExponential(1));//1.2e+5
-  console.log(n.toExponential(3));//1.235e+5
-  console.log(n.toPrecision(4));  //1.235e+5
-  console.log(n.toPrecision(6));  //123457
-  console.log(n.toPrecision(7));  //123456.8</p></li>
+<li>toPrecision()은 지정된 유효 숫자 자릿수를 이용해 숫자를 변환한다. 이때 유효 숫자 자릿수의 숫자가 변환할 숫자의 전체 정수부를 표시할 만큼 충분하지 않다면 지수 표기법을 사용한다.</li>
 </ul>
 
+
+<p><del>
+var n = 123456.789;
+console.log(n.toFixed(0));      //123457
+console.log(n.toFixed(2));      //123456.79
+console.log(n.toExponential(1));//1.2e+5
+console.log(n.toExponential(3));//1.235e+5
+console.log(n.toPrecision(4));  //1.235e+5
+console.log(n.toPrecision(6));  //123457
+console.log(n.toPrecision(7));  //123456.8
+</del></p>
 
 <h2>문자열을 숫자로 변환</h2>
 
@@ -207,8 +218,6 @@ console.log(parseFloat("$50.55 dollars"));  // NaN
 <p>참고: ECMAScript 명세에서는 문자열이 ?0?(?0x?나 ?0X?가 아닌)으로 시작할 경우 parseInt()에서는 그것을 8진수나 10진수로 파싱할 수도 있다고 명시하고 있다. 그러므로 앞에 0이 붙은 숫자를 파싱할 때는 parseInt()를 사용해서는 안 된다.</p>
 
 <h2>부정확한 계산</h2>
-
-<p>In JavaScript there is inaccuracies for floating-point number calculations, since the floating-point number (eg. 0.1) can not be exactly represented as binary. The following example show you the inaccuracies:</p>
 
 <p>자바스크립트에서는 부동 소수점 수(예: 0.1)를 정확히 이진수로 표현할 수 없기 때문에 부동 소수점 계산이 부정확한 측면이 있다. 다음 예제는 그러한 부정확성을 보여준다.</p>
 
@@ -275,11 +284,10 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 <script type="text/javascript" src="js/shBrushXml.js"></script>
 <script type="text/javascript">
 SyntaxHighlighter.autoloader(
-  'js jscript javascript  js/shBrushJScript.js'
+  'js jscript javascript js/shBrushJScript.js'
 );
 SyntaxHighlighter.defaults['toolbar'] = false;
 SyntaxHighlighter.defaults['gutter'] = false;
-SyntaxHighlighter.defaults['html-script'] = true;
 SyntaxHighlighter.all();
 </script>
 

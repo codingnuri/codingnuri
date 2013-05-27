@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>프로퍼티 | 자바스크립트 자습서</title>
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+<meta name="description" content="자바스크립트 프로퍼티 자습서와 예제">
+<meta name="keywords" content="자바스크립트 프로퍼티, property, properties">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40877373-1', 'codingnuri.com');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+<div id="container">
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<h1>프로퍼티</h1>
+
+<p>자바스크립트에 변수는 기본적으로 객체 프로퍼티(property)와 같다.</p>
+
+<h2>전역 객체와 전역 변수</h2>
+
+<p>자바스크립트 인터프리터가 실행됐을 때 가장 먼저 하는 일은 <em>전역 객체</em>를 생성하는 것이다. 전역 객체의 프로퍼티는 전역 변수인데, 전역 자바스크립트 변수를 선언할 경우 실질적으로 전역 객체의 프로퍼티를 정의하는 셈이다.</p>
+
+<p>자바스크립트에서 <em>Window</em> 객체는 브라우저 창에 담긴 모든 자바스크립트 코드를 위한 전역 객체의 역할을 한다. 이 전역 Window 객체에는 전역 객체를 참조할 때 <em>this</em> 대신 사용할 수 있는 자가 참조(self-referential) <em>window</em> 프로퍼티가 포함돼 있다.</p>
+
+<p>Window 객체에는 parseInt와 Math 같은 핵심적인 전역 프로퍼티를 비롯해 navigator와 screen과 같은 전역 클라이언트 측 프로퍼티가 정의돼 있다.</p>
+
+<p>전역 객체와 변수를 사용하는 예제는 다음과 같다.</p>
+
+<pre class="brush: js;">var number1 = "111";
+console.log(number1);       // 111, 전역 객체의 프로퍼티에 접근
+console.log(this.number1);  // 111, 'this'를 사용해 전역 객체를 참조
+console.log(window.number1);// 111, 'window'를 사용해 전역 객체를 참조
+</pre>
+
+<h2>지역 변수: 호출 객체</h2>
+
+<p>함수 안에서 정의되는 지역 변수도 객체의 프로퍼티에 해당한다. 이 객체를 <em>호출 객체(call object)</em>라 하는데, 함수의 본문이 실행되는 동안 함수 인자와 지역 변수가 이 <em>호출 객체</em>의 프로퍼티로 저장된다. 지역 변수는 전역 변수와 이름이 같을 수 있지만 각기 별도의 객체에 저장된다.</p>
+
+<p>지역 변수를 사용하는 예제는 다음과 같다.</p>
+
+<pre class="brush: js;">x = 5;          // 전역 변수
+y = 5;          // 전역 변수
+function f(y){      // 인자 'y'는 호출 객체의 프로퍼티로 저장됨
+    var x = 15;     // 지역 변수
+    console.log("local variable x = "+ x);
+    console.log("local variable y = "+ y);
+} 
+f(15);
+console.log("local global x = "+ x);
+console.log("local global y = "+ y);
+</pre>
+
+<p>위 코드를 실행한 결과는 다음과 같다.</p>
+
+<pre class="brush: js;">local variable x = 15
+local variable y = 15
+local global x = 5
+local global y = 5
+</pre>
+
+<h2>실행 컨텍스트</h2>
+
+<p>자바스크립트 인터프리터가 함수를 실행하기 시작할 때마다 해당 함수에 대한 새로운 실행 컨텍스트를 생성한다. 실행 컨텍스트란 자바스크립트 코드가 실행되는 컨텍스트를 말한다. 컨텍스트에서 중요한 부분 중 하나는 변수가 정의되는 객체다.</p>
+
+<p>함수에 속하지 않는 자바스크립트 코드는 전역 객체가 변수 정의를 위해 사용하는 실행 컨텍스트에서 실행된다.</p>
+
+<p>모든 자바스크립트 함수는 지역 변수가 정의되는 자체적인 호출 객체와 함께 자체적으로 고유한 실행 컨텍스트에서 실행된다.</p>
+
+<h2>관련 수업</h2>
+
+<ul>
+<li><a href="javascript-variable-declaration-and-scope.html">변수 선언과 유효범위</a></li>
+<li><a href="javascript-primitive-types-and-reference-types.html">원시 타입과 참조 타입</a></li>
+<li><a href="javascript-garbage-collection.html">가비지 컬렉션</a></li>
+<li><a href="javascript-variables-as-properties.html">프로퍼티</a></li>
+</ul>
+
+
+
+<table class="paging"><tr><td class="prev"><a href="javascript-garbage-collection.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"></td></tr></table>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+<div id="footer">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+</body>
+
+<link type="text/css" href="css/shCore.css" rel="stylesheet" />
+<link type="text/css" href="css/shThemeEclipse.css" rel="stylesheet" />
+<script type="text/javascript" src="js/shCore.js"></script>
+<script type="text/javascript" src="js/shAutoloader.js"></script>
+<script type="text/javascript" src="js/shBrushJScript.js"></script>
+<script type="text/javascript" src="js/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+  'js jscript javascript js/shBrushJScript.js'
+);
+SyntaxHighlighter.defaults['toolbar'] = false;
+SyntaxHighlighter.defaults['gutter'] = false;
+SyntaxHighlighter.all();
+</script>
+
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>산술 연산자 | 자바스크립트 자습서</title>
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+<meta name="description" content="자바스크립트 자습서와 예제, 덧셈(+), 뺄셈(-), 곱셈(*), 나눗셈(/), 나머지(%), 단항 마이너스(-), 단항 플러스(+), 증가(++), 감소(--)">
+<meta name="keywords" content="자바스크립트 산술 연산자">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40877373-1', 'codingnuri.com');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+<div id="container">
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<h1>산술 연산자</h1>
+
+<h2>덧셈(+)</h2>
+
+<p>+ 연산자는 숫자 피연산자를 더하거나 문자열 피연산자를 연결하는 역할을 한다. 피연산자 중 하나가 문자열이면 다른 피연산자는 문자열로 변환되며, 두 문자열은 하나로 연결된다. 객체 피연산자는 더하거나 연결될 수 있는 숫자나 문자열로 변환된다.</p>
+
+<pre class="brush: js;">console.log(10 + 5);        // 15
+console.log("He" + "llo!"); // Hello!
+console.log("10" + 5);      // 105
+console.log("10" + true);   // 10true
+Subtraction (-)
+</pre>
+
+<p>-가 이항 연산자로 사용될 경우 첫 번째 피연산자에서 두 번째 피연산자를 뺀다. 숫자가 아닌 피연산자에 사용할 경우 피연산자를 숫자로 변환하려고 시도한다.</p>
+
+<pre class="brush: js;">console.log(10 - 5);        // 5
+console.log("He" - "llo!"); // NaN
+console.log(10 - true);     // 9
+</pre>
+
+<h2>곱셈(*)</h2>
+
+<p>* 연산자는 두 피연산자를 곱한다. 숫자가 아닌 피연산자에 사용할 경우 피연산자를 숫자로 변환하려고 시도한다.</p>
+
+<pre class="brush: js;">console.log(10 * 5);        // 50
+console.log("He" * "llo!"); // NaN
+console.log(5 * "He");      // NaN
+console.log(10 * true);     // 10
+console.log(10 * false);    // 0
+</pre>
+
+<h2>나눗셈(/)</h2>
+
+<p>/ 연산자는 첫 번째 피연산자를 두 번째 피연산자로 나눈다. 숫자가 아닌 피연산자에 사용할 경우 피연산자를 숫자로 변환하려고 시도한다.</p>
+
+<pre class="brush: js;">console.log(5 / 4);         // 1.25
+console.log("He" / "llo!"); // NaN
+console.log(5 / 0 );        // Infinity
+console.log(0 / 0);         // NaN
+</pre>
+
+<h2>나머지(%)</h2>
+
+<p>% 연산자는 첫 번째 피연산자를 두 번째 피연산자로 나눈 나머지를 반환한다.</p>
+
+<p>% 연산자는 정수 값과 더불어 부동소수점 값에도 사용할 수 있다.</p>
+
+<pre class="brush: js;">console.log(5 % 4);         // 1
+console.log("He" % "llo!"); // NaN
+console.log(5.5 % 4 );      // 1.5
+console.log(5.8 % 1.1);     // 0.3
+</pre>
+
+<h2>단항 마이너스(-)</h2>
+
+<p>-를 단일 피연산자 앞에 단항 연산자로 사용할 경우 단항 부정 연산을 수행한다. 피연산자가 숫자가 아니면 이 연산자는 해당 피연산자를 숫자로 변환하려고 시도한다.</p>
+
+<pre class="brush: js;">console.log(-5);            // -5
+console.log(-"He");         // NaN
+console.log(-true);         // -1
+console.log(-false);        // 0
+</pre>
+
+<h2>단항 플러스(+)</h2>
+
+<p>+ 연산자는 피연산자가 숫자가 아닐 경우 피연산자를 숫자로 변환한다.</p>
+
+<pre class="brush: js;">console.log(+5);            // 5
+console.log(+"He");         // NaN
+console.log(+true);         // 1
+console.log(+false);        // 0
+</pre>
+
+<h2>증가(++)</h2>
+
+<p>++ 연산자는 단일 피연산자를 증가시키며, 해당 피연산자는 변수이거나 배열의 원소, 또는 객체의 프로퍼티여야 한다.</p>
+
+<p>전치증가(pre-increment) 연산자를 사용하는 예제는 다음과 같다.</p>
+
+<pre class="brush: js;">i = 5;
+j = ++i;
+console.log(i);         // 6
+console.log(j);         // 6
+</pre>
+
+<p>후치증가(post-increment) 연산자를 사용하는 예제는 다음과 같다.</p>
+
+<pre class="brush: js;">i = 5;
+j = i++;
+console.log(i);         // 6
+console.log(j);         // 5
+</pre>
+
+<h2>감소(--)</h2>
+
+<p>-- 연산자는 단일 피연산자를 감소시키며, 해당 피연산자는 변수이거나 배열의 원소, 또는 객체의 프로퍼티여야 한다.</p>
+
+<p>전치감소(pre-decrement) 연산자를 사용하는 예제는 다음과 같다.</p>
+
+<pre class="brush: js;">i = 5;
+j = --i;
+console.log(i);         // 4
+console.log(j);         // 4
+</pre>
+
+<p>후치감소(post-decrement) 연산자를 사용하는 예제는 다음과 같다.</p>
+
+<pre class="brush: js;">i = 5;
+j = i--;
+console.log(i);         // 4
+console.log(j);         // 5
+</pre>
+
+<h2>관련 수업</h2>
+
+<ul>
+<li><a href="javascript-expressions-and-operators.html">수식과 연산자</a></li>
+<li><a href="javascript-arithmetic-operators.html">산술 연산자</a></li>
+<li><a href="javascript-equality-operators.html">동일성 연산자</a></li>
+<li><a href="javascript-relational-operators.html">관계 연산자</a></li>
+<li><a href="javascript-logical-operators.html">논리 연산자</a></li>
+<li><a href="javascript-assignment-operators.html">할당 연산자</a></li>
+<li><a href="javascript-miscellaneous-operators.html">기타 연산자</a></li>
+</ul>
+
+
+
+<table class="paging"><tr><td class="prev"><a href="javascript-expressions-and-operators.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="javascript-equality-operators.html">다음 &rarr;</a></td></tr></table>
+<br/>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+<div id="footer">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+</body>
+
+<link type="text/css" href="css/shCore.css" rel="stylesheet" />
+<link type="text/css" href="css/shThemeEclipse.css" rel="stylesheet" />
+<script type="text/javascript" src="js/shCore.js"></script>
+<script type="text/javascript" src="js/shAutoloader.js"></script>
+<script type="text/javascript" src="js/shBrushJScript.js"></script>
+<script type="text/javascript" src="js/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+  'js jscript javascript js/shBrushJScript.js'
+);
+SyntaxHighlighter.defaults['toolbar'] = false;
+SyntaxHighlighter.defaults['gutter'] = false;
+SyntaxHighlighter.all();
+</script>
+
+</html>

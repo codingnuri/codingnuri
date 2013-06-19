@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>관계 연산자 | 자바스크립트 자습서</title>
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+<meta name="description" content="자바스크립트 자습서와 예제,">
+<meta name="keywords" content="자바스크립트 관계 연산자">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40877373-1', 'codingnuri.com');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+<div id="container">
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<h1>관계 연산자</h1>
+
+<p>관계 연산자(relational operator)는 두 값 간의 관계를 검사해서 해당 관계가 존재하는지 여부에 따라 참이나 거짓을 반환한다.</p>
+
+<h2>비교 연산자</h2>
+
+<p>비교 연산자는 두 값의 상대적인 순서를 판단한다.</p>
+
+<ul>
+<li>~보다 작음(&lt;): 첫 번째 피연산자가 두 번째 피연산자보다 작으면 참으로 평가된다. 그렇지 않으면 거짓으로 평가된다.</li>
+<li>~보다 큼(>): 첫 번째 피연산자가 두 번째 피연산자보다 크면 참으로 평가된다. 그렇지 않으면 거짓으로 평가된다.</li>
+<li>~보다 작거나 같음(&lt;=): 첫 번째 피연산자가 두 번째 피연산자보다 작거나 같으면 참으로 평가된다. 그렇지 않으면 거짓으로 평가된다.</li>
+<li>~보다 크거나 같음(>=): 첫 번째 피연산자가 두 번재 피연산자보다 크거나 같으면 참으로 평가된다. 그렇지 않으면 거짓으로 평가된다.</li>
+</ul>
+
+
+<p>비교 연산자의 예는 다음과 같다.</p>
+
+<pre class="brush: js;">console.log(10 &gt; 5);         // true
+console.log(10 &gt;= 5);        // true
+console.log(10 &lt;= 5);        // false
+console.log(10 &lt; 5);         // false
+console.log('a' &lt; 'b');      // true
+</pre>
+
+<p>이러한 비교 연산자의 피연산자로는 어떤 타입이든 올 수 있다. 그렇지만 비교는 숫자와 문자열에 대해서만 수행될 수 있어서 숫자나 문자열이 아닌 피연산자는 변환된다.</p>
+
+<p>두 피연산자가 모두 숫자이거나 숫자로 변환되면 두 피연산자는 숫자상으로 비교된다.</p>
+
+<pre class="brush: js;">console.log('6' &gt; 5);            // true
+</pre>
+
+<p>피연산자가 모두 문자열이거나 문자열로 변환되면 두 피연산자는 문자열로 비교된다.</p>
+
+<pre class="brush: js;">console.log('5' &gt; '25');     // true
+</pre>
+
+<p>한 피연산자가 숫자이고 다른 피연산자가 숫자로 변환될 수 없으면 해당 피연산자는 NaN으로 변환되고 비교는 항상 거짓을 반환한다.</p>
+
+<pre class="brush: js;">console.log('a' &gt; 5);            // false
+console.log(5 &gt; NaN);            // false
+</pre>
+
+<p>피연산자가 가운데 하나가 숫자나 문자열로 변환될 수 없으면 비교는 항상 거짓을 반환한다.</p>
+
+<pre class="brush: js;">console.log({x:1} &gt; 5);          // false
+console.log(5 &gt; {x:1});          // false
+</pre>
+
+<h2>in 연산자</h2>
+
+<p>in 연산자는 왼쪽 값이 오른쪽 객체의 프로퍼티 이름일 경우 참으로 평가된다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">var point = {x:5, y:5}
+console.log('x' in point);          // true
+console.log('a' in point);          // false
+console.log('toString' in point);   // true, 프로퍼티에서 상속됨
+</pre>
+
+<h2>instanceof 연산자</h2>
+
+<p>instanceof 연산자는 왼쪽 객체가 오른쪽 클래스의 인스턴스일 경우 참으로 평가되고, 그 밖의 경우에는 거짓으로 평가된다.</p>
+
+<p>자바스크립트에서 객체의 클래스는 그것을 초기화하는 생성자 함수로 정의된다.</p>
+
+<pre class="brush: js;">var d = new Date();
+console.log(d instanceof Date);     // true
+var d = [1,2,3,4,5];
+console.log(d instanceof Array);    // true
+</pre>
+
+<p>모든 객체는 Object의 인스턴스다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">var d = new Date();
+console.log(d instanceof Object);   // true
+var d = [1,2,3,4,5];
+console.log(d instanceof Object);   // true
+console.log({} instanceof Object);  // true
+</pre>
+
+<p>instanceof의 왼쪽 피연산자가 객체가 아니면 거짓이 반환된다.</p>
+
+<pre class="brush: js;">console.log(5 instanceof Object);   // false
+</pre>
+
+<p>instanceof의 오른쪽 피연산자가 객체가 아니면 런타임 오류가 발생한다.</p>
+
+<pre class="brush: js;">console.log(5 instanceof 5);    // TypeError: invalid 'instanceof' operand 5
+</pre>
+
+<h2>관련 수업</h2>
+
+<ul>
+<li><a href="javascript-expressions-and-operators.html">수식과 연산자</a></li>
+<li><a href="javascript-arithmetic-operators.html">산술 연산자</a></li>
+<li><a href="javascript-equality-operators.html">동일성 연산자</a></li>
+<li><a href="javascript-relational-operators.html">관계 연산자</a></li>
+<li><a href="javascript-logical-operators.html">논리 연산자</a></li>
+<li><a href="javascript-assignment-operators.html">할당 연산자</a></li>
+<li><a href="javascript-miscellaneous-operators.html">기타 연산자</a></li>
+</ul>
+
+
+
+<table class="paging"><tr><td class="prev"><a href="javascript-equality-operators.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="javascript-logical-operators.html">다음 &rarr;</a></td></tr></table>
+<br/>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+<div id="footer">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+</body>
+
+<link type="text/css" href="css/shCore.css" rel="stylesheet" />
+<link type="text/css" href="css/shThemeEclipse.css" rel="stylesheet" />
+<script type="text/javascript" src="js/shCore.js"></script>
+<script type="text/javascript" src="js/shAutoloader.js"></script>
+<script type="text/javascript" src="js/shBrushJScript.js"></script>
+<script type="text/javascript" src="js/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+  'js jscript javascript js/shBrushJScript.js'
+);
+SyntaxHighlighter.defaults['toolbar'] = false;
+SyntaxHighlighter.defaults['gutter'] = false;
+SyntaxHighlighter.all();
+</script>
+
+</html>

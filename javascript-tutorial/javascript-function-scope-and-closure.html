@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>함수 유효범위와 클로저 | 자바스크립트 자습서</title>
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+<meta name="description" content="자바스크립트 자습서와 예제,">
+<meta name="keywords" content="자바스크립트 함수 유효범위와 클로저">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40877373-1', 'codingnuri.com');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+<div id="container">
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<h1>함수 유효범위와 클로저</h1>
+
+<p>자바스크립트 인터프리터가 함수를 호출할 경우 인터프리터는 호출 객체(활성화 객체로도 알려진)를 생성한다.</p>
+
+<p>모든 함수 매개변수 및 var 문으로 선언한 지역 변수는 호출 객체 안에 정의되고 호출 객체의 프로퍼티가 된다.</p>
+
+<p>다음 예제의 경우, f1 호출 객체에는 y1과 x1 프로퍼티가 담기고, f2 호출 객체에는 y2와 x2 프로퍼티가 담긴다.</p>
+
+<pre class="brush: js;">function f1(y1) {
+    var x1 = 1;
+    function f2(y2) {
+        var x2 = 2;
+    }
+    f2();
+}
+f1(); 
+</pre>
+
+<h2>함수 유효범위 체인</h2>
+
+<p>자바스크립트 함수는 그것이 실행되고 있는 유효범위가 아니라 그것이 정의된 유효범위 내에서 실행된다.</p>
+
+<p>함수를 정의하면 현재 유효범위 체인이 저장되고 해당 함수의 내부 상태의 일부를 구성하게 된다.</p>
+
+<p>가장 높은 레벨의 유효범위 체인은 단순히 전역 객체로만 구성돼 있다.</p>
+
+<p>중첩 함수를 정의하면 유효범위 체인이 바깥 함수를 포함하게 되어 중첩된 함수에서는 바깥 함수의 인자와 지역 변수에 모두 접근할 수 있다.</p>
+
+<p>자바스크립트 인터프리터가 함수를 호출하면 해당 함수의 호출 객체는 유효범위 체인 앞에 추가된다.</p>
+
+<p>다음 예제의 경우 f2가 호출되면 유효범위 체인에는 세 개의 객체가 포함되는데, 이러한 객체로는 해당 함수 자체의 호출 객체와 f1의 호출 객체, 그리고 전역 객체가 있다.</p>
+
+<pre class="brush: js;">function f1(y1) {
+    var x1 = 1;
+    function f2(y2) {
+        var x2 = 2;
+    }
+    f2();
+}
+f1(); 
+</pre>
+
+<h2>자바스크립트 클로저</h2>
+
+<p>자바스크립트 함수는 실행될 코드와 코드가 실행되는 유효범위의 조합에 해당한다. 이러한 코드와 유효범위의 조합은 컴퓨터 과학 분야에서 클로저(closure)로 알려져 있다. 모든 자바스크립트 함수는 클로저다.</p>
+
+<p>때때로 함수 호출 간에도 값을 유지할 수 있는 함수를 작성하고 싶을 때가 있다. 이를 위해 지역 변수를 사용할 수는 없는데, 호출 객체가 함수 호출 간에 유지되지 않기 때문이다. 클로저를 이용하면 영속적이고 비공개적인 변수를 만들어낼 수 있다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">getUniqueID = (function(){
+    var id = 0;
+    return function(){ 
+        return id++; 
+    }
+})();
+
+console.log("id: " + getUniqueID());
+console.log("id: " + getUniqueID());
+console.log("id: " + getUniqueID());
+</pre>
+
+<p>위 코드를 실행한 결과는 다음과 같다.</p>
+
+<pre class="brush: js;">id: 0
+id: 1
+id: 2
+</pre>
+
+<p>또 다른 흥미로운 예제는 다음과 같다.</p>
+
+<pre class="brush: js;">function makeMultiplier(x){
+    return function(y){
+        return x*y;
+    }
+}
+
+var multiply10 = makeMultiplier(10);
+var multiply20 = makeMultiplier(20);
+
+console.log(multiply10(5));     // 50
+console.log(multiply20(5));     // 100
+</pre>
+
+<p>이 예제에서는 makeMultiplier(x)라는 함수를 정의했는데, 이 함수는 x라는 인자를 하나 받아 새로운 함수를 반환한다. 이 함수에서 반환한 함수는 y라는 인자를 받아 x*y를 반환한다.</p>
+
+<p>본질적으로 makeMultiplier는 함수 팩터리다. 즉, 특정 값을 그것의 인자와 곱할 수 있는 함수를 만들어낸다. 위 예제에서는 함수 팩터리를 이용해 두 개의 새로운 함수를 만들어냈다. 하나는 인자에 10을 곱하는 함수이고, 다른 하나는 20을 곱하는 함수다.</p>
+
+<p>multiply10과 multiply20은 모두 클로저다. 두 함수는 동일한 함수 본문 정의를 공유하지만 유효범위 체인은 다르다. multiply10의 유효범위 체인에서는 x가 10이다. multiply20의 경우에는 x가 20이다.</p>
+
+<h2>관련 수업</h2>
+
+<ul>
+<li><a href="javascript-function-scope-and-closure.html">함수 유효범위와 클로저</a></li>
+<li><a href="javascript-modules-and-namespaces.html">모듈과 네임스페이스</a></li>
+</ul>
+
+
+
+<table class="paging"><tr><td class="prev"><a href="javascript-with-statement.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="javascript-modules-and-namespaces.html">다음 &rarr;</a></td></tr></table>
+<br/>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+<div id="footer">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+</body>
+
+<link type="text/css" href="css/shCore.css" rel="stylesheet" />
+<link type="text/css" href="css/shThemeEclipse.css" rel="stylesheet" />
+<script type="text/javascript" src="js/shCore.js"></script>
+<script type="text/javascript" src="js/shAutoloader.js"></script>
+<script type="text/javascript" src="js/shBrushJScript.js"></script>
+<script type="text/javascript" src="js/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+  'js jscript javascript js/shBrushJScript.js'
+);
+SyntaxHighlighter.defaults['toolbar'] = false;
+SyntaxHighlighter.defaults['gutter'] = false;
+SyntaxHighlighter.all();
+</script>
+
+</html>

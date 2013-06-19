@@ -2,10 +2,10 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>undefined | 자바스크립트 자습서</title>
+<title>인스턴스 프로퍼티와 메서드 | 자바스크립트 자습서</title>
 <link type="text/css" href="css/style.css" rel="stylesheet" />
-<meta name="description" content="자바스크립트 undefined 값 자습서와 예제, 자바스크립트 undefined 변환">
-<meta name="keywords" content="자바스크립트 undefined, 자바스크립트 undefined 값">
+<meta name="description" content="자바스크립트 자습서와 예제,">
+<meta name="keywords" content="인스턴스 프로퍼티와 메서드">
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -31,59 +31,65 @@ google_ad_height = 90;
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
 
-<h1>undefined</h1>
+<h1>인스턴스 프로퍼티와 메서드</h1>
 
-<p>자바스크립트에서 변수를 선언은 했지만 값을 할당하지는 않았거나 존재하지 않은 객체 프로퍼티일 경우 <em>undefined</em>가 반환된다.</p>
+<p>자바스크립트는 객체지향 언어이고, 같은 클래스(생성자 함수)의 객체가 여러 개 있을 수 있으며, 각 객체는 해당 클래스의 인스턴스에 해당한다.</p>
 
-<h2>undefined와 null</h2>
+<h2>인스턴스 프로퍼티</h2>
 
-<p>동치 연산자인 ==는 <em>undefined</em>를 <em>null</em>과 동일하다고 간주한다.</p>
+<p>모든 객체는 인스턴스 프로퍼티의 사본을 자체적으로 가지고 있다. 다음 예제를 보자.</p>
 
-<pre class="brush: js;">var user = {};
-console.log(user.name == null); // true
+<pre class="brush: js;">function Point(x,y){
+    this.x = x;
+    this.y = y;
+}
+
+point1 = new Point(5,5);
+point2 = new Point(8,8);
+
+console.log(point1.x);  // 5
+console.log(point2.y);  // 8
 </pre>
 
-<p>undefined와 null이 동일한 경우를 구분하고 싶다면 동치 연산자인 ===를 사용한다.</p>
+<p>인스턴스 프로퍼티에는 개별 객체(이를테면 point1.x)를 통해 접근한다.</p>
 
-<pre class="brush: js;">var user = {};
-console.log(user.name === null);    // false
+<h2>인스턴스 메서드</h2>
+
+<p>인스턴스 메서드는 특정 인스턴스나 객체를 대상으로 호출된다. 인스턴스 메서드를 구현할 때는 this 키워드를 이용해 메서드를 호출할 인스턴스나 객체를 참조한다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">function Point(x,y){
+    this.x = x;
+    this.y = y;
+}
+
+// 객체를 먼저 생성
+point1 = new Point(5,5);
+point2 = new Point(8,8);
+
+// 프로토타입에 메서드를 추가
+Point.prototype.add = function(){
+    return this.x + this.y;
+}   
+
+console.log(point1.add());  // 10
+console.log(point2.add());  // 16
 </pre>
 
-<h2>undefined의 변환</h2>
-
-<p><em>undefined</em>가 불린 연산에서 사용될 경우 거짓으로 변환된다.</p>
-
-<pre class="brush: js;">console.log(!!undefined);   // false
-</pre>
-
-<p>undefined가 수치 연산에서 사용될 경우 NaN으로 변환된다.</p>
-
-<pre class="brush: js;">console.log(1+undefined);   // NaN
-</pre>
-
-<p><em>undefined</em>가 문자열 연산에서 사용될 경우 <em>undefined</em>로 변환된다.</p>
-
-<pre class="brush: js;">console.log(""+undefined);  // undefined
-</pre>
+<p>인스턴스 메서드는 클래스의 모든 인스턴스가 공유한다.</p>
 
 <h2>관련 수업</h2>
 
 <ul>
-<li><a href="javascript-datatypes-overview.html">자료형 소개</a></li>
-<li><a href="javascript-strings.html">문자열</a></li>
-<li><a href="javascript-numbers.html">숫자</a></li>
-<li><a href="javascript-boolean.html">불린</a></li>
-<li><a href="javascript-objects.html">객체</a></li>
-<li><a href="javascript-functions.html">함수</a></li>
-<li><a href="javascript-arrays.html">배열</a></li>
-<li><a href="javascript-null.html">null</a></li>
-<li><a href="javascript-undefined.html">undefined</a></li>
-<li><a href="javascript-datatype-detection.html">자료형 검사</a></li>
+<li><a href="constructors.html">생성자</a></li>
+<li><a href="prototypes.html">프로토타입</a></li>
+<li><a href="instance-properties-and-methods.html">인스턴스 프로퍼티와 메서드</a></li>
+<li><a href="class-properties-and-methods.html">클래스 프로퍼티와 메서드</a></li>
+<li><a href="private-members.html">비공개 멤버</a></li>
 </ul>
 
 
 
-<table class="paging"><tr><td class="prev"><a href="javascript-null.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="javascript-datatype-detection.html">다음 &rarr;</a></td></tr></table>
+<table class="paging"><tr><td class="prev"><a href="prototypes.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="class-properties-and-methods.html">다음 &rarr;</a></td></tr></table>
 <br/>
 
 <script type="text/javascript"><!--

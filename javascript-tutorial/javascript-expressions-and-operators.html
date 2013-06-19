@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>수식과 연산자 | 자바스크립트 자습서</title>
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+<meta name="description" content="자바스크립트 자습서와 예제, 자바스크립트 수식, 자바스크립트 연산자 우선순위와 결합법칙">
+<meta name="keywords" content="자바스크립트 수식과 연산자">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40877373-1', 'codingnuri.com');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+<div id="container">
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<h1>수식과 연산자</h1>
+
+<h2>수식</h2>
+
+<p><em>자바스크립트 수식(expression)</em>은 자바스크립트 인터프리터가 값을 만들어 내기 위해 평가할 수 있는 구절을 의미한다. 기본 수식으로 리터럴이나 변수명이 있으며, 리터럴 수식의 값은 리터럴 값 자체이며, 변수 수식의 값은 해당 변수에 담겨 있거나 해당 변수가 가리키는 값이다.</p>
+
+<p>기본 수식을 사용하는 예제는 다음과 같다.</p>
+
+<pre class="brush: js;">"Hello!"        // 문자열 리터럴
+10.5            // 숫자 리터럴
+true            // 불린 리터럴
+null            // 널값 리터럴
+/hello/         // 정규표현식 리터럴
+{name:jerry}    // 객체 리터럴
+[1,3,5,7,9]     // 배열 리터럴
+function(x,y){return x+y;}  // 함수 리터럴
+i               // 변수 i
+count           // 변수 count 
+</pre>
+
+<p>자바스크립트 수식은 간단한 수식을 조합해서 만들 수도 있다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">"Hello!" + x + y
+100 - i
+100 + i - j
+</pre>
+
+<h2>피연산자의 개수</h2>
+
+<p>연산자는 피연산자의 개수에 따라 분류할 수 있다.</p>
+
+<p>이항 연산자: 두 수식을 하나의 복합 수식으로 결합한다. 다음 예제를 보자.</p>
+
+<p>x + y       // 덧셈
+i - j       // 뺄셈</p>
+
+<p>단항 연산자: 단 하나의 수식을 단 하나의 복합 수식으로 변환한다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">-10         // 단항 마이너스(부정)
+typeof x    // 반환형
+</pre>
+
+<p>삼항 연산자: 세 개의 수식을 단 하나의 복합 수식으로 결합한다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">i ? x : y   // 조건 연산자
+</pre>
+
+<h2>연산자 우선순위</h2>
+
+<p>연산자 우선순위는 연산이 수행되는 순서를 좌우한다. 기본 규칙은 덧셈과 나눗셈은 덧셈과 뺄셈보다 먼저 수행되고, 할당은 우선순위가 매우 낮으며, 거의 항상 마지막에 수행된다는 것이다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">result = x + y*z;
+</pre>
+
+<p>곱셈 연산자인 *는 덧셈 연산자인 +보다 우선순위가 높기 때문에 곱셈은 덧셈보다 먼저 수행된다. 게다가 할당 연산자인 =은 우선순위가 가장 낮기 때문에 할당은 오른쪽에 있는 연산이 모두 완료된 후에야 수행된다.</p>
+
+<h2>연산자 결합법칙</h2>
+
+<p>연산자 결합법칙은 우선순위가 동일한 연산이 수행되는 순서를 명시한다.</p>
+
+<p>왼쪽에서 오른쪽으로: 연산이 왼쪽에서 오른쪽 방향으로 수행되는 것을 의미한다. 예를 들어, 다음의 두 수식은 같다.</p>
+
+<pre class="brush: js;">result = x + y + z;
+result = ((x + y) + z);
+</pre>
+
+<p>오른쪽에서 왼쪽으로: 연산이 오른쪽에서 왼쪽으로 수행되는 것을 의미한다. 예를 들어, 다음의 두 수식은 같다.</p>
+
+<pre class="brush: js;">result = !!!x;
+result = !(!(!x));
+</pre>
+
+<h2>관련 수업</h2>
+
+<ul>
+<li><a href="javascript-expressions-and-operators.html">수식과 연산자</a></li>
+<li><a href="javascript-arithmetic-operators.html">산술 연산자</a></li>
+<li><a href="javascript-equality-operators.html">동일성 연산자</a></li>
+<li><a href="javascript-relational-operators.html">관계 연산자</a></li>
+<li><a href="javascript-logical-operators.html">논리 연산자</a></li>
+<li><a href="javascript-assignment-operators.html">할당 연산자</a></li>
+<li><a href="javascript-miscellaneous-operators.html">기타 연산자</a></li>
+</ul>
+
+
+
+<table class="paging"><tr><td class="prev"><a href="javascript-variables-as-properties.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="javascript-arithmetic-operators.html">다음 &rarr;</a></td></tr></table>
+<br/>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+<div id="footer">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+</body>
+
+<link type="text/css" href="css/shCore.css" rel="stylesheet" />
+<link type="text/css" href="css/shThemeEclipse.css" rel="stylesheet" />
+<script type="text/javascript" src="js/shCore.js"></script>
+<script type="text/javascript" src="js/shAutoloader.js"></script>
+<script type="text/javascript" src="js/shBrushJScript.js"></script>
+<script type="text/javascript" src="js/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+  'js jscript javascript js/shBrushJScript.js'
+);
+SyntaxHighlighter.defaults['toolbar'] = false;
+SyntaxHighlighter.defaults['gutter'] = false;
+SyntaxHighlighter.all();
+</script>
+
+</html>

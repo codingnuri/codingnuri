@@ -2,10 +2,10 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>undefined | 자바스크립트 자습서</title>
+<title>생성자 | 자바스크립트 자습서</title>
 <link type="text/css" href="css/style.css" rel="stylesheet" />
-<meta name="description" content="자바스크립트 undefined 값 자습서와 예제, 자바스크립트 undefined 변환">
-<meta name="keywords" content="자바스크립트 undefined, 자바스크립트 undefined 값">
+<meta name="description" content="자바스크립트 자습서와 예제,">
+<meta name="keywords" content="생성자">
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -31,59 +31,52 @@ google_ad_height = 90;
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
 
-<h1>undefined</h1>
+<h1>생성자</h1>
 
-<p>자바스크립트에서 변수를 선언은 했지만 값을 할당하지는 않았거나 존재하지 않은 객체 프로퍼티일 경우 <em>undefined</em>가 반환된다.</p>
+<p>여러 객체지향 프로그래밍 언어에서는 객체의 클래스를 정의한 다음 해당 클래스의 인스턴스에 해당하는 개별 객체를 생성하는 것이 가능하다. 자바스크립트에서는 진정한 클래스를 지원하지는 않지만 자바스크립트 객체를 생성하는 생성자 함수를 제공한다.</p>
 
-<h2>undefined와 null</h2>
+<h2>자바스크립트 생성자란 무엇인가?</h2>
 
-<p>동치 연산자인 ==는 <em>undefined</em>를 <em>null</em>과 동일하다고 간주한다.</p>
+<p>자바스크립트 생성자는 자바스크립트 객체를 생성하는 데 사용되는 함수다.</p>
 
-<pre class="brush: js;">var user = {};
-console.log(user.name == null); // true
+<p>자바스크립트 생성자는 new 연산자와 함께 사용되는데, 먼저 프로퍼티가 없는 새 객체를 생성한 후 생성자 함수를 호출하고 새 객체를 this 키워드의 값으로 전달하며, 객체가 사용되기 전에 설정돼 있어야 할 프로퍼티를 설정하는 역할을 한다.</p>
+
+<h2>자바스크립트 생성자 예제</h2>
+
+<p>생성자 함수를 직접 정의할 수 있는데, 단지 this에 프로퍼티를 추가하는 함수를 작성하기만 하면 된다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">function Point(x,y){
+    this.x = x;
+    this.y = y;
+    // 보통 생성자 함수는 반환값이 없다.
+}
+
+point1 = new Point(5,5);
+point2 = new Point(8,8);
+
+console.log(JSON.stringify(point1));
+console.log(JSON.stringify(point2));
 </pre>
 
-<p>undefined와 null이 동일한 경우를 구분하고 싶다면 동치 연산자인 ===를 사용한다.</p>
+<p>위 코드를 실행한 결과는 다음과 같다.</p>
 
-<pre class="brush: js;">var user = {};
-console.log(user.name === null);    // false
-</pre>
-
-<h2>undefined의 변환</h2>
-
-<p><em>undefined</em>가 불린 연산에서 사용될 경우 거짓으로 변환된다.</p>
-
-<pre class="brush: js;">console.log(!!undefined);   // false
-</pre>
-
-<p>undefined가 수치 연산에서 사용될 경우 NaN으로 변환된다.</p>
-
-<pre class="brush: js;">console.log(1+undefined);   // NaN
-</pre>
-
-<p><em>undefined</em>가 문자열 연산에서 사용될 경우 <em>undefined</em>로 변환된다.</p>
-
-<pre class="brush: js;">console.log(""+undefined);  // undefined
+<pre class="brush: js;">{"x":5,"y":5}
+{"x":8,"y":8}
 </pre>
 
 <h2>관련 수업</h2>
 
 <ul>
-<li><a href="javascript-datatypes-overview.html">자료형 소개</a></li>
-<li><a href="javascript-strings.html">문자열</a></li>
-<li><a href="javascript-numbers.html">숫자</a></li>
-<li><a href="javascript-boolean.html">불린</a></li>
-<li><a href="javascript-objects.html">객체</a></li>
-<li><a href="javascript-functions.html">함수</a></li>
-<li><a href="javascript-arrays.html">배열</a></li>
-<li><a href="javascript-null.html">null</a></li>
-<li><a href="javascript-undefined.html">undefined</a></li>
-<li><a href="javascript-datatype-detection.html">자료형 검사</a></li>
+<li><a href="constructors.html">생성자</a></li>
+<li><a href="prototypes.html">프로토타입</a></li>
+<li><a href="instance-properties-and-methods.html">인스턴스 프로퍼티와 메서드</a></li>
+<li><a href="class-properties-and-methods.html">클래스 프로퍼티와 메서드</a></li>
+<li><a href="private-members.html">비공개 멤버</a></li>
 </ul>
 
 
 
-<table class="paging"><tr><td class="prev"><a href="javascript-null.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="javascript-datatype-detection.html">다음 &rarr;</a></td></tr></table>
+<table class="paging"><tr><td class="prev"><a href="javascript-modules-and-namespaces.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="prototypes.html">다음 &rarr;</a></td></tr></table>
 <br/>
 
 <script type="text/javascript"><!--

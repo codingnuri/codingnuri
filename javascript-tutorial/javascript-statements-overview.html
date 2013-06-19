@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>구문 소개 | 자바스크립트 자습서</title>
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+<meta name="description" content="자바스크립트 자습서와 예제,">
+<meta name="keywords" content="자바스크립트 구문 소개">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40877373-1', 'codingnuri.com');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+<div id="container">
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<h1>자바스크립트 구문 소개</h1>
+
+<p>자바스크립트 프로그램은 구문의 모음이다.</p>
+
+<h2>선택적인 세미콜론</h2>
+
+<p>자바스크립트 구문은 세미콜론(;)으로 각각 구분된다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">var x = 5;
+var y = 6;
+console.log(x+y);   // 11
+</pre>
+
+<p>각 구문이 별도의 줄로 나눠져 있다면 세미콜론을 생략해도 된다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">var x = 5
+var y = 6
+console.log(x+y)    // 11
+</pre>
+
+<p>세미콜론을 생략하는 것은 좋은 습관이 아니다. 이는 자바스크립트가 자동으로 세미콜론을 집어넣어주기 때문인데, 줄바꿈이 있을 경우 자바스크립트는 세미콜론을 생략했다고 간주할 것이고, 이 경우 문제가 발생할 것이다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">var str = "Hello    // SyntaxError: 끝나지 않은 문자열 리터럴
+         world";
+console.log(str);
+</pre>
+
+<p>위 코드에 대해 문법 오류(Syntax Error)가 발생했는데, 이는 자바스크립트가 첫 줄을 다음과 같은 완전한 구문으로 간주하기 때문이다.</p>
+
+<pre class="brush: js;">var str = "Hello;  // ;을 자동으로 추가
+         world";
+console.log(str);
+</pre>
+
+<p>줄바꿈 앞에 백슬래시를 두면 인터프리터가 줄바꿈을 무시하게 된다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">var str = "Hello \
+    world";
+console.log(str);       // Hello    world
+</pre>
+
+<p>수식이 끝나지 않은 경우에도 줄바꿈이 무시되는데, 특히 마무리하지 않은 연산자나 닫지 않은 괄호가 그렇다.</p>
+
+<pre class="brush: js;">var str = "Hello " + 
+          "world";
+console.log(str);       // Hello world
+
+var sum = 5 + 
+          5 + 
+          3;
+console.log(sum);       // 13
+
+var result = true
+             &amp;&amp; false;
+console.log(result);    // false
+</pre>
+
+<h2>단순 구문</h2>
+
+<p>자바스크립트에서 간단한 구문으로 할당과 함수 호출이 있다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">var x = 1;          // 선언문
+x++;                // 할당문
+var y = x - 10;     // 할당문
+z = Math.abs(y);    // 함수 호출과 할당문
+window.close( );    // 함수 호출
+</pre>
+
+<h2>블록문</h2>
+
+<p>자바스크립트에서는 구문을 중괄호로 감싸서 여러 개의 구문을 하나의 블록문으로 조합할 수 있다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">var x, y, z;
+{
+    x = 5;
+    y = 6;
+    z = x + y;  
+}
+console.log(z);     // 11
+</pre>
+
+<p>대개 블록문은 for나 if, while, 함수 등과 같은 복잡한 구문의 일부로 사용된다.</p>
+
+<p>블록문은 단일 구문으로 동작하지만 세미콜론으로 끝나지 않는다.</p>
+
+<h2>관련 수업</h2>
+
+<ul>
+<li><a href="javascript-statements-overview.html">구문 소개</a></li>
+<li><a href="javascript-if-statement.html">if 문</a></li>
+<li><a href="javascript-switch-statement.html">switch 문</a></li>
+<li><a href="javascript-while-statement.html">while 문</a></li>
+<li><a href="javascript-do-while-statement.html">do...while 문</a></li>
+<li><a href="javascript-for-statement.html">for 문</a></li>
+<li><a href="javascript-for-in-statement.html">for...in 문</a></li>
+<li><a href="javascript-break-statement.html">break 문</a></li>
+<li><a href="javascript-continue-statement.html">continue 문</a></li>
+<li><a href="javascript-var-statement.html">var 문</a></li>
+<li><a href="javascript-return-statement.html">return 문</a></li>
+<li><a href="javascript-errors-statement.html">오류 처리 구문</a></li>
+<li><a href="javascript-with-statement.html">with 문</a></li>
+</ul>
+
+
+
+<table class="paging"><tr><td class="prev"><a href="javascript-miscellaneous-operators.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="javascript-if-statement.html">다음 &rarr;</a></td></tr></table>
+<br/>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+<div id="footer">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+</body>
+
+<link type="text/css" href="css/shCore.css" rel="stylesheet" />
+<link type="text/css" href="css/shThemeEclipse.css" rel="stylesheet" />
+<script type="text/javascript" src="js/shCore.js"></script>
+<script type="text/javascript" src="js/shAutoloader.js"></script>
+<script type="text/javascript" src="js/shBrushJScript.js"></script>
+<script type="text/javascript" src="js/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+  'js jscript javascript js/shBrushJScript.js'
+);
+SyntaxHighlighter.defaults['toolbar'] = false;
+SyntaxHighlighter.defaults['gutter'] = false;
+SyntaxHighlighter.all();
+</script>
+
+</html>

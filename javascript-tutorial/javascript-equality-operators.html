@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>동일성 연산자 | 자바스크립트 자습서</title>
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+<meta name="description" content="자바스크립트 자습서와 예제,">
+<meta name="keywords" content="자바스크립트 동일성 연산자">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40877373-1', 'codingnuri.com');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+<div id="container">
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<h1>동일성 연산자</h1>
+
+<p>동일성과 불일치 연산자는 두 값을 비교해 두 값이 같으면 다른지 파악한 후 비교 결과에 따라 불린값(참이나 거짓)을 반환한다.</p>
+
+<p>자바스크립트에서 숫자, 문자열, 불린값은 값을 기준으로 비교된다.</p>
+
+<p>객체, 배열, 함수는 참조를 기준으로 비교된다. 이는 두 변수가 같은 객체를 가리킬 때만 같다는 것을 의미한다. 두 개의 개별 배열은 절대로 같거나 일치하지 않는데, 같거나 동일한 요소를 담고 있는 경우에도 그렇다.</p>
+
+<h2>동일성 (===)</h2>
+
+<p>=== 연산자는 두 값이 같은지 판단한다.</p>
+
+<ul>
+<li>두 값이 다른 타입이면 두 값은 일치하지 않는다.</li>
+<li>두 값이 숫자이고 값이 같으면 두 값은 일치한다. 두 값이 모두 NaN이거나 둘 중 하나가 NaN이면 두 값은 일치하지 않는다.</li>
+<li>두 값이 문자열이고 정확히 동일한 문자를 같은 위치에 가지고 있으면 두 값은 일치한다.</li>
+<li>두 값이 모두 불린값 참이거나 불린값 거짓이면 두 값은 일치한다.</li>
+<li>두 값이 모두 동일한 객체나 배열, 함수를 가리킬 경우 두 값은 일치한다. 두 값이 다른 객체(또는 배열이나 함수)를 참조하면 두 값은 일치하지 않는다.</li>
+<li>두 값이 모두 null이거나 undefined이면 두 값은 일치한다.</li>
+</ul>
+
+
+<p>동일성에 대한 예제는 다음과 같다.</p>
+
+<pre class="brush: js;">console.log(5===5);                 // true
+console.log("java"==="java");       // true
+console.log(false===false);         // true
+console.log(null===null);           // true
+console.log(undefined===undefined); // true
+var obj1 = {};
+var obj2 = obj1;
+console.log(obj1===obj2);           // true
+</pre>
+
+<p>불일치에 대한 예제는 다음과 같다.</p>
+
+<pre class="brush: js;">console.log("5"===5);               // false
+console.log(NaN===NaN);             // false
+console.log(false===null);          // false
+console.log(null===undefined);      // false
+var obj1 = {};
+var obj2 = {};
+console.log(obj1===obj2);           // false
+Nonidentity (!==)
+</pre>
+
+<p>!== 연산자는 두 값이 서로 같으면 false를 반환하고, 그렇지 않을 경우 true를 반환한다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">console.log(5!==5);                 // false
+console.log("java"!=="java");       // false
+console.log(false!==false);         // false
+console.log(null!==null);           // false
+console.log(undefined!==undefined); // false
+var obj1 = {};
+var obj2 = obj1;
+console.log(obj1!==obj2);           // false
+</pre>
+
+<h2>동치성 (==)</h2>
+
+<p>== 연산자는 두 값이 동등한지 판단한다.</p>
+
+<p>두 값이 같은 타입일 경우 두 값이 일치하면 동등하고, 값이 일치하지 않으면 동등하지 않다.</p>
+
+<p>두 값의 타입이 같지 않을 경우</p>
+
+<ul>
+<li>값 하나가 null이고 다른 하나가 undefined이면 두 값은 동등하다.</li>
+<li>값 하나가 숫자이고 다른 하나가 문자열이면 문자열을 숫자로 변환한 후 다시 비교한다.</li>
+<li>두 값 중 하나가 true이면 그것을 1로 변환한 후 다시 비교한다. 두 값 중 하나가 false이면 그 값을 0으로 변환한 후 다시 비교한다.</li>
+<li>값 하나가 객체이고 다른 하나가 숫자나 문자열이면 객체를 원시형 값으로 변환한 후 다시 비교한다. 객체는 toString()이나 valueOf() 메서드를 통해 원시형 값으로 변환된다.</li>
+<li>그 밖의 다른 값의 조합은 동등하지 않다.</li>
+</ul>
+
+
+<p>동치성에 대한 예제는 다음과 같다.</p>
+
+<pre class="brush: js;">console.log(5==5);              // true
+console.log("5"=="5");          // true
+console.log("5"==5);            // true
+console.log(null==undefined);   // true
+console.log(false==0);          // true
+console.log(true=="1");         // true
+</pre>
+
+<h2>불일치 (!=)</h2>
+
+<p>!= 연산자는 두 값이 서로 동등하지 않을 경우 거짓을 반환하며, 그 밖의 경우 참을 반환한다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">console.log(5!=5);              // false
+console.log("5"!="5");          // false
+console.log("5"!=5);            // false
+console.log(null!=undefined);   // false
+console.log(false!=0);          // false
+console.log(true!="1");         // false
+</pre>
+
+<h2>관련 수업</h2>
+
+<ul>
+<li><a href="javascript-expressions-and-operators.html">수식과 연산자</a></li>
+<li><a href="javascript-arithmetic-operators.html">산술 연산자</a></li>
+<li><a href="javascript-equality-operators.html">동일성 연산자</a></li>
+<li><a href="javascript-relational-operators.html">관계 연산자</a></li>
+<li><a href="javascript-logical-operators.html">논리 연산자</a></li>
+<li><a href="javascript-assignment-operators.html">할당 연산자</a></li>
+<li><a href="javascript-miscellaneous-operators.html">기타 연산자</a></li>
+</ul>
+
+
+
+<table class="paging"><tr><td class="prev"><a href="javascript-arithmetic-operators.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="javascript-relational-operators.html">다음 &rarr;</a></td></tr></table>
+<br/>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+<div id="footer">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+</body>
+
+<link type="text/css" href="css/shCore.css" rel="stylesheet" />
+<link type="text/css" href="css/shThemeEclipse.css" rel="stylesheet" />
+<script type="text/javascript" src="js/shCore.js"></script>
+<script type="text/javascript" src="js/shAutoloader.js"></script>
+<script type="text/javascript" src="js/shBrushJScript.js"></script>
+<script type="text/javascript" src="js/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+  'js jscript javascript js/shBrushJScript.js'
+);
+SyntaxHighlighter.defaults['toolbar'] = false;
+SyntaxHighlighter.defaults['gutter'] = false;
+SyntaxHighlighter.all();
+</script>
+
+</html>

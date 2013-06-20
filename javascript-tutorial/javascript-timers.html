@@ -2,10 +2,10 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>history 객체 | 자바스크립트 자습서</title>
+<title>타이머 | 자바스크립트 자습서</title>
 <link type="text/css" href="css/style.css" rel="stylesheet" />
 <meta name="description" content="자바스크립트 자습서와 예제,">
-<meta name="keywords" content="history 객체">
+<meta name="keywords" content="타이머">
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -31,48 +31,67 @@ google_ad_height = 90;
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
 
-<h1>history 객체</h1>
+<h1>navigator 객체</h1>
 
-<h2>자바스크립트 history 객체</h2>
+<h2>타이머</h2>
 
-<p>winodw.history 프로퍼티는 History 객체에 대한 참조이며, 윈도우의 열람 이력을 최근에 방문한 URL의 배열로 나타낸다.</p>
-
-<p>window.history 객체는 다음과 같은 메서드를 제공한다.</p>
+<p>자바스크립트에서는 미래의 특정 시점에 코드를 실행할 수 있는데, window 객체에서는 다음과 같은 전역 함수를 제공한다.</p>
 
 <ul>
-<li>history.back(): 윈도우의 열람 이력에서 뒤로 이동한다. 뒤로 가기 브라우저 버튼을 클릭한 것과 같다.</li>
-<li>history.forward(): 윈도우의 열람 이력에서 앞으로 이동한다. 앞으로 가기 브라우저 버튼을 클릭한 것과 같다.</li>
+<li>setTimeout() 메서드는 특정 밀리초만큼의 시간이 경과한 후에 실행될 함수를 예약하며, 예약된 함수의 실행을 취소하기 위해 clearTimeout()에 전달할 수 있는 값을 반환한다.</li>
+<li>clearTimeout() 메서드는 예약된 함수의 실행을 취소하는 데 사용된다.</li>
+<li>setInterval() 메서드는 밀리초 단위의 특정 시간 간격에 걸쳐 반복적으로 실행될 함수를 지정한다. 이 함수는 예약된 함수가 나중에 호출되는 것을 취소하기 위해 clearInterval() 메서드에 전달할 수 있는 값을 반환한다.</li>
+<li>clearInterval() 메서드는 예약된 함수의 호출을 취소하는 데 사용된다.</li>
 </ul>
 
 
-<p>window.history 객체를 사용하는 예제는 다음과 같다.</p>
+<h2>setTimeout()과 clearTimeout() 예제</h2>
 
-<pre class="brush: xml;">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;title&gt;JavaScript History&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
+<p>setTimeout()과 clearTimeout()을 사용하는 예제는 다음과 같다.</p>
 
-&lt;script type="text/javascript"&gt;
+<pre class="brush: js;">var timeout;
 
-    function goBack()
-    {
-        history.back()
-    }
+function start(){
+    timeout = setTimeout(function(){
+        console.log("Hello world.");
+    }, 3000);
+}
 
-    function goForward()
-    {
-        history.forward()
-    }
+function stop(){
+    clearTimeout(timeout);
+}
 
-&lt;/script&gt;
+start();
+stop();
+</pre>
 
-&lt;input type="button" value="Back" onclick="goBack()"&gt;
-&lt;input type="button" value="Forward" onclick="goForward()"&gt;
+<h2>setInterval()과 clearInterval() 예제</h2>
 
-&lt;/body&gt;
-&lt;/html&gt;
+<pre class="brush: js;">var interval;
+var count = 0;
+
+function start(){
+    interval = setInterval(function(){
+        console.log("Hello world.");
+        count++;
+        if (count == 5) stop();
+    }, 2000);
+}
+
+function stop(){
+    clearInterval(interval);
+}
+
+start();
+</pre>
+
+<p>위 코드를 실행한 결과는 다음과 같다.</p>
+
+<pre class="brush: js;">Hello world.
+Hello world.
+Hello world.
+Hello world.
+Hello world.
 </pre>
 
 <h2>관련 수업</h2>
@@ -90,7 +109,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 
 
 
-<table class="paging"><tr><td class="prev"><a href="javascript-location-object.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="javascript-navigator-object.html">다음 &rarr;</a></td></tr></table>
+<table class="paging"><tr><td class="prev"><a href="javascript-navigator-object.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="javascript-dialog-boxes.html">다음 &rarr;</a></td></tr></table>
 <br/>
 
 <script type="text/javascript"><!--

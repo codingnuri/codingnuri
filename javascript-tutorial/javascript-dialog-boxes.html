@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>대화상자 | 자바스크립트 자습서</title>
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+<meta name="description" content="자바스크립트 자습서와 예제,">
+<meta name="keywords" content="대화상자">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40877373-1', 'codingnuri.com');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+<div id="container">
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<h1>대화상자</h1>
+
+<h2>대화상자</h2>
+
+<p>자바스크립트의 window 객체에서는 사용자에게 대화상자를 표시하기 위해 다음과 같은 전역 함수를 제공한다.</p>
+
+<ul>
+<li>alert() 메서드는 사용자에게 메시지를 표시한 다음 사용자가 대화상자를 닫을 때까지 대기한다.</li>
+<li>confirm() 메서드는 사용자가 '확인'이나 '취소' 버튼을 눌러 동작을 확인하거나 취소할지 묻는다.</li>
+<li>prompt() 메서드는 사용자가 문자열을 입력하게 한다.</li>
+</ul>
+
+
+<p>위의 세 메서드는 사용자가 대화상자를 닫기 전까지는 null을 반환하지 않는데, 이는 사용자가 요청받은 입력에 대해 반응하기 전까지 자바스크립트 코드가 실행을 멈추고 현재 로딩 중인 문서가 로딩을 중단한다는 의미다.</p>
+
+<h2>alert() 예제</h2>
+
+<p>alert() 함수를 사용하는 예제는 다음과 같다.</p>
+
+<pre class="brush: js;">alert("itinpractice.com에 오신 것을 환영합니다")
+</pre>
+
+<h2>confirm() 예제</h2>
+
+<p>confirm() 함수를 사용하는 예제는 다음과 같다.</p>
+
+<pre class="brush: js;">var confirmation = confirm("확실합니까?");
+if (confirmation){
+    console.log("'확인'을 누르셨습니다!");
+}else{
+    console.log("'취소'를 누르셨습니다!");
+}
+</pre>
+
+<p>'확인'을 클릭하면 확인 대화상자가 true를 반환하고 '취소'를 클릭하면 확인 대화상자가 false를 반환한다.</p>
+
+<h2>prompt() 예제</h2>
+
+<p>prompt() 함수를 사용하는 예제는 다음과 같다.</p>
+
+<pre class="brush: js;">var city = prompt("도시명을 입력해 주세요", "기본 도시명");
+console.log(city + "에 오신 것을 환영합니다");
+</pre>
+
+<p>'확인'을 클릭하면 프롬프트 대화상자가 입력값을 반환하고, '취소'를 클릭하면 프롬프트 대화상자가 null을 반환한다.</p>
+
+<h2>관련 수업</h2>
+
+<ul>
+<li><a href="javascript-window-object.html">window 객체</a></li>
+<li><a href="javascript-screen-object.html">screen 객체</a></li>
+<li><a href="javascript-location-object.html">location 객체</a></li>
+<li><a href="javascript-history-object.html">history 객체</a></li>
+<li><a href="javascript-navigator-object.html">navigator 객체</a></li>
+<li><a href="javascript-timers.html">타이머</a></li>
+<li><a href="javascript-dialog-boxes.html">대화상자</a></li>
+<li><a href="javascript-error-handling.html">오류 처리</a></li>
+</ul>
+
+
+
+<table class="paging"><tr><td class="prev"><a href="javascript-timers.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="javascript-dialog-boxes.html">다음 &rarr;</a></td></tr></table>
+<br/>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+<div id="footer">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+</body>
+
+<link type="text/css" href="css/shCore.css" rel="stylesheet" />
+<link type="text/css" href="css/shThemeEclipse.css" rel="stylesheet" />
+<script type="text/javascript" src="js/shCore.js"></script>
+<script type="text/javascript" src="js/shAutoloader.js"></script>
+<script type="text/javascript" src="js/shBrushJScript.js"></script>
+<script type="text/javascript" src="js/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+  'js jscript javascript js/shBrushJScript.js'
+);
+SyntaxHighlighter.defaults['toolbar'] = false;
+SyntaxHighlighter.defaults['gutter'] = false;
+SyntaxHighlighter.all();
+</script>
+
+</html>

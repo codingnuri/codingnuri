@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>history 객체 | 자바스크립트 자습서</title>
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+<meta name="description" content="자바스크립트 자습서와 예제,">
+<meta name="keywords" content="history 객체">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40877373-1', 'codingnuri.com');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+<div id="container">
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<h1>history 객체</h1>
+
+<h2>자바스크립트 history 객체</h2>
+
+<p>winodw.history 프로퍼티는 History 객체에 대한 참조이며, 윈도우의 열람 이력을 최근에 방문한 URL의 배열로 나타낸다.</p>
+
+<p>window.history 객체는 다음과 같은 메서드를 제공한다.</p>
+
+<ul>
+<li>history.back(): 윈도우의 열람 이력에서 뒤로 이동한다. 뒤로 가기 브라우저 버튼을 클릭한 것과 같다.</li>
+<li>history.forward(): 윈도우의 열람 이력에서 앞으로 이동한다. 앞으로 가기 브라우저 버튼을 클릭한 것과 같다.</li>
+</ul>
+
+
+<p>window.history 객체를 사용하는 예제는 다음과 같다.</p>
+
+<pre class="brush: js;">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;JavaScript History&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;script type="text/javascript"&gt;
+
+    function goBack()
+    {
+        history.back()
+    }
+
+    function goForward()
+    {
+        history.forward()
+    }
+
+&lt;/script&gt;
+
+&lt;input type="button" value="Back" onclick="goBack()"&gt;
+&lt;input type="button" value="Forward" onclick="goForward()"&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<h2>관련 수업</h2>
+
+<ul>
+<li><a href="javascript-window-object.html">window 객체</a></li>
+<li><a href="javascript-screen-object.html">screen 객체</a></li>
+<li><a href="javascript-location-object.html">location 객체</a></li>
+<li><a href="javascript-history-object.html">history 객체</a></li>
+<li><a href="javascript-navigator-object.html">navigator 객체</a></li>
+<li><a href="javascript-timers.html">타이머</a></li>
+<li><a href="javascript-dialog-boxes.html">대화상자</a></li>
+<li><a href="javascript-error-handling.html">오류 처리</a></li>
+</ul>
+
+
+
+<table class="paging"><tr><td class="prev"><a href="javascript-location-object.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="javascript-navigator-object.html">다음 &rarr;</a></td></tr></table>
+<br/>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+<div id="footer">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+</body>
+
+<link type="text/css" href="css/shCore.css" rel="stylesheet" />
+<link type="text/css" href="css/shThemeEclipse.css" rel="stylesheet" />
+<script type="text/javascript" src="js/shCore.js"></script>
+<script type="text/javascript" src="js/shAutoloader.js"></script>
+<script type="text/javascript" src="js/shBrushJScript.js"></script>
+<script type="text/javascript" src="js/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+  'js jscript javascript js/shBrushJScript.js'
+);
+SyntaxHighlighter.defaults['toolbar'] = false;
+SyntaxHighlighter.defaults['gutter'] = false;
+SyntaxHighlighter.all();
+</script>
+
+</html>

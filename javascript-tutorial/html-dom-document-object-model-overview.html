@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>HTML DOM 소개 | 자바스크립트 자습서</title>
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+<meta name="description" content="자바스크립트 자습서와 예제,">
+<meta name="keywords" content="HTML DOM, Document Object Model, 문서 객체 모델">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40877373-1', 'codingnuri.com');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+<div id="container">
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<h1>HTML DOM(Document Object Model) 소개</h1>
+
+<h2>DOM(Document Object Model)이란 무엇인가?</h2>
+
+<p>DOM(Document Object Model)은 HTML 문서의 모든 요소에 접근하는 방법을 정의한 API다.</p>
+
+<p>DOM 객체는 텍스트와 이미지, 하이퍼링크, 폼 엘리먼트 등의 각 문서 엘리먼트를 나타낸다. 자바스크립트 코드에서는 동적인 HTML을 만들어내기 위해 DOM 객체에 접근해서 조작할 수 있다.</p>
+
+<h2>document.write()를 이용한 동적 문서 생성</h2>
+
+<p>자바스크립트에서 document.write()는 현재 파싱 중인 문서에 내용을 쓰는 데 사용할 수 있으며, 이 메서드를 호출하는 코드가 담긴 &lt;script> 태그가 위치한 곳에서 HTML 문서에 텍스트를 집어넣는다.</p>
+
+<p>&lt;script> 태그의 최상위 수준의 코드 안에서만 document.write()를 호출할 수 있는데, 이는 이러한 스크립트가 문서 파싱 과정의 일부로 실행되기 때문이다.</p>
+
+<p>document.write()의 예는 다음과 같다.</p>
+
+<pre class="brush: xml;">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;script&gt;
+document.write("Hello DOM.");
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt; 
+</pre>
+
+<h2>문서를 트리로 표현하기</h2>
+
+<p>HTML 문서는 중첩된 태그로 구성된 계층적인 구조를 띠는데, 이는 DOM에서 객체 트리로 표현된다. DOM 트리에는 HTML 태그나 엘리먼트를 나타내는 노드가 담긴다.</p>
+
+<h2>DOM 노드</h2>
+
+<p>DOM 트리는 다양한 형식의 Node 객체가 담긴다. Node 인터페이스에는 트리 탐색과 조작을 위한 프로퍼티와 메서드가 정의돼 있다.</p>
+
+<ul>
+<li>Node 객체의 childNodes 프로퍼티는 해당 노드의 자식 목록을 반환한다.</li>
+<li>firstChild, lastChild, nextSibling, previousSibling, parentNode 프로퍼티는 노드 트리를 탐색하는 수단을 제공한다.</li>
+<li>appendChild(), removeChild(), replaceChild(), insertBefore()와 같은 메서드를 이용하면 문서 트리에서 노드를 추가하고 제거할 수 있다.</li>
+</ul>
+
+
+<p>DOM 트리의 루트에 위치한 Node는 Document 객체다. DOM 트리에는 단 하나의 Document 객체만이 있다. 트리상의 노드는 대부분 Element 객체와 Text 객체, 그리고 Comment 객체에 해당한다.</p>
+
+<p>Element 인터페이스의 getAttribute(), setAttribute(), removeAttribute() 메서드를 이용하면 엘리먼트의 속성을 대상으로 질의, 설정, 삭제할 수 있다.</p>
+
+<h2>DOM HTML API</h2>
+
+<p>DOM 표준은 XML 및 HTML 문서에 모두 사용할 목적으로 고안됐다. Node, Element, Document 인터페이스 등의 핵심 DOM API는 비교적 일반화돼 있어 두 유형의 문서에 모두 적용할 수 있다.</p>
+
+<p>DOM 표준에는 HTML 문서에 특화된 인터페이스도 포함돼 있다.</p>
+
+<ul>
+<li>HTMLDocument는 HTML에 특화된 Document의 하위 인터페이스로서 location 프로퍼티를 비롯해 forms[] 배열, write() 메서드 등 다양한 문서 프로퍼티와 메서드가 정의돼 있다.</li>
+<li>HTMLElement는 HTML에 특화된 Element의 하위 인터페이스로서 id, style, title, lang, dir, className 프로퍼티가 정의돼 있다.</li>
+</ul>
+
+
+<h2>언어 독립적인 DOM API</h2>
+
+<p>DOM 표준이 동적 HTML 프로그래밍을 위한 공통 API를 마련하기 위해 만들어진 것이긴 하지만 DOM은 웹 스크립트를 작성하는 것에만 국한되지 않는다. 사실 DOM 표준은 현재 XML 문서를 파싱하고 조작하는 서버 측 자바와 C++ 프로그램에서 가장 비중 있게 사용되고 있다. DOM 표준은 쓰임새가 다양하기 때문에 언어 독립적으로 정의돼 있다.</p>
+
+<h2>관련 수업</h2>
+
+<ul>
+<li><a href="html-dom-document-object-model-overview.html">HTML DOM(Document Object Model) 소개</a></li>
+<li><a href="changing-html-content-using-html-dom.html">HTML DOM을 이용한 HTML 내용 변경</a></li>
+<li><a href="changing-style-and-css-using-html-dom.html">HTML DOM을 이용한 스타일 및 CSS 변경</a></li>
+<li><a href="html-dom-events-and-event-handling.html">HTML DOM 이벤트와 이벤트 처리</a></li>
+<li><a href="adding-and-removing-html-dom-elements.html">HTML DOM 엘리먼트 추가와 제거</a></li>
+</ul>
+
+
+
+<table class="paging"><tr><td class="prev"><a href="javascript-error-handling.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="changing-html-content-using-html-dom.html">다음 &rarr;</a></td></tr></table>
+<br/>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+<div id="footer">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+</body>
+
+<link type="text/css" href="css/shCore.css" rel="stylesheet" />
+<link type="text/css" href="css/shThemeEclipse.css" rel="stylesheet" />
+<script type="text/javascript" src="js/shCore.js"></script>
+<script type="text/javascript" src="js/shAutoloader.js"></script>
+<script type="text/javascript" src="js/shBrushJScript.js"></script>
+<script type="text/javascript" src="js/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+  'js jscript javascript js/shBrushJScript.js',
+  'xml js/shBrushXml.js'
+);
+SyntaxHighlighter.defaults['toolbar'] = false;
+SyntaxHighlighter.defaults['gutter'] = false;
+SyntaxHighlighter.all();
+</script>
+
+</html>

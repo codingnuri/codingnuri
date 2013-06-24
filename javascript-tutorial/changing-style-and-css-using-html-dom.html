@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>HTML DOM을 이용한 스타일 및 CSS 변경 | 자바스크립트 자습서</title>
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+<meta name="description" content="자바스크립트 자습서와 예제,">
+<meta name="keywords" content="HTML DOM, 스타일 및 CSS 변경">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40877373-1', 'codingnuri.com');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+<div id="container">
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<h1>HTML DOM을 이용한 스타일 및 CSS 변경</h1>
+
+<h2>HTML 스타일 변경하기</h2>
+
+<p>자바스크립트에서 HTML 엘리먼트의 스타일을 동적으로 변경할 수 있다. 문법은 다음과 같다.</p>
+
+<pre class="brush: js;">document.getElementById(id).style.property="새 스타일";
+</pre>
+
+<p>다음 예제를 보자.</p>
+
+<pre class="brush: js;">document.getElementById('image1').style.visibility="hidden";
+document.getElementById("p1").style.color="green";
+</pre>
+
+<h2>HTML CSS 클래스 변경하기</h2>
+
+<p>동적으로 엘리먼트의 class를 설정하면 엘리먼트에 적용된 스타일을 극적으로 변경할 수 있다.</p>
+
+<p>자바스크립트에서는 HTML 엘리먼트의 className 프로퍼티를 동적으로 변경할 수 있다. 문법은 다음과 같다.</p>
+
+<pre class="brush: js;">document.getElementById(id).className="새 CSS";
+</pre>
+
+<p>다음 예제를 보자.</p>
+
+<pre class="brush: js;">document.getElementById('image1').className="new-css-1, new-css-2";
+document.getElementById("p1").className="new-css-3, new-css-4";
+</pre>
+
+<h2>스타일시트 활성화와 비활성화</h2>
+
+<p>자바스크립트에서는 &lt;link>와 &lt;style> 엘리먼트의 disabled 프로퍼티를 이용해 스타일시트를 활성화하거나 비활성화할 수 있다. disabled 프로퍼티가 true이면 &lt;link>나 &lt;style> 엘리먼트와 관련된 스타일시트가 비활성화되어 브라우저에서 무시하게 된다. 다음 예제를 보자.</p>
+
+<pre class="brush: xml;">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;JavaScript&lt;/title&gt;
+    &lt;link rel="stylesheet" type="text/css" href="ss1.css" id="ss1"&gt;
+    &lt;link rel="alternate stylesheet" type="text/css" href="ss2.css" id="ss2"&gt;
+    &lt;style id="ss3" title="Sans Serif"&gt;
+        body { font-family: sans-serif; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;script type="text/javascript"&gt;
+    document.getElementById('ss1').disabled = true;
+    document.getElementById('ss3').disabled = true;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<h2>관련 수업</h2>
+
+<ul>
+<li><a href="html-dom-document-object-model-overview.html">HTML DOM(Document Object Model) 소개</a></li>
+<li><a href="changing-html-content-using-html-dom.html">HTML DOM을 이용한 HTML 내용 변경</a></li>
+<li><a href="changing-style-and-css-using-html-dom.html">HTML DOM을 이용한 스타일 및 CSS 변경</a></li>
+<li><a href="html-dom-events-and-event-handling.html">HTML DOM 이벤트와 이벤트 처리</a></li>
+<li><a href="adding-and-removing-html-dom-elements.html">HTML DOM 엘리먼트 추가와 제거</a></li>
+</ul>
+
+
+
+<table class="paging"><tr><td class="prev"><a href="changing-html-content-using-html-dom.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="html-dom-events-and-event-handling.html">다음 &rarr;</a></td></tr></table>
+<br/>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+<div id="footer">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+</body>
+
+<link type="text/css" href="css/shCore.css" rel="stylesheet" />
+<link type="text/css" href="css/shThemeEclipse.css" rel="stylesheet" />
+<script type="text/javascript" src="js/shCore.js"></script>
+<script type="text/javascript" src="js/shAutoloader.js"></script>
+<script type="text/javascript" src="js/shBrushJScript.js"></script>
+<script type="text/javascript" src="js/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+  'js jscript javascript js/shBrushJScript.js',
+  'xml js/shBrushXml.js'
+);
+SyntaxHighlighter.defaults['toolbar'] = false;
+SyntaxHighlighter.defaults['gutter'] = false;
+SyntaxHighlighter.all();
+</script>
+
+</html>

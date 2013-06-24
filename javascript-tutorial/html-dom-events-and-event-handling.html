@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>HTML DOM 이벤트와 이벤트 처리 | 자바스크립트 자습서</title>
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+<meta name="description" content="자바스크립트 자습서와 예제,">
+<meta name="keywords" content="HTML DOM, HTML DOM 이벤트, 이벤트 처리">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40877373-1', 'codingnuri.com');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+<div id="container">
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<h1>HTML DOM 이벤트와 이벤트 처리</h1>
+
+<p>자바스크립트 프로그램에서는 이벤트 주도 프로그래밍(event-driven programming) 모델을 사용하며, 웹 브라우저ㅇ는 HTML 이벤트를 생성하고, HTML DOM은 자바스크립트가 HTML 이벤트에 반응하게 한다.</p>
+
+<h2>이벤트와 이벤트 타입</h2>
+
+<p>자바스크립트에서 특정 HTML 이벤트가 발생하면 브라우저에서는 자바스크립트 함수나 코드 조각에 해당하는 이벤트 핸들러(event handler)를 호출한다. 사용 가능한 다양한 이벤트 핸들러는 다음과 같다.</p>
+
+<ul>
+<li>onabort: 이미지 로딩이 중단될 경우 실행된다.</li>
+<li>onblur: 엘리먼트가 입력 포커스를 잃어버릴 경우 실행된다.</li>
+<li>onchange: 폼 엘리먼트가 포커스를 잃고 값이 변경될 경우 실행된다.</li>
+<li>onclick: 마우스 버튼이 눌렸다 떼어질 때 실행된다. mouseup 이벤트가 이어서 발생한다. 기본 동작 방식을 취소하려면 false를 반환한다.</li>
+<li>ondblclick: 마우스가 더블클릭될 때 실행된다.</li>
+<li>onerror: 이미지 로딩 오류가 일어날 경우 실행된다.</li>
+<li>onfocus: 엘리먼트가 입력 포커스를 얻을 경우 실행된다.</li>
+<li>onkeydown: 키가 눌렸을 때 실행된다. 취소하려면 false를 반환한다.</li>
+<li>onkeypress: 키가 눌렸을 때 실행된다. keydown 이벤트가 이어서 발생한다. 취소하려면 false를 반환한다.</li>
+<li>onkeyup: 키에서 손을 뗐을 때 실행된다. keypress 이벤트가 이어서 발생한다.</li>
+<li>onmousedown: 마우스 버튼이 눌렸을 때 실행된다.</li>
+<li>onmousemove: 마우스가 이동할 경우 실행된다.</li>
+<li>onmouseout: 마우스가 엘리먼트에서 벗어났을 때 실행된다.</li>
+<li>onmouseover: 마우스가 엘리먼트 위로 이동할 때 실행된다.</li>
+<li>onmouseup: 마우스 버튼에서 손을 뗐을 때 실행된다.</li>
+<li>onresize: 윈도우 크기가 변경될 경우 실행된다.</li>
+<li>onselect: 텍스트가 선택됐을 때 실행된다.</li>
+<li>onreset: 폼 초기화가 요청됐을 때 실행된다. 초기화를 방지하려면 false를 반환한다.</li>
+<li>onsubmit: 폼 제출이 요청됐을 때 실행된다. 제출을 방지하려면 false를 반환한다.</li>
+<li>onload: 문서 로딩이 완료됐을 때 실행된다.</li>
+<li>onunload: 문서나 프레임셋이 사라졌을 때 실행된다.</li>
+</ul>
+
+
+<h2>속성 형태의 이벤트 핸들러</h2>
+
+<p>자바스크립트에서 이벤트 핸들러는 HTML 속성으로 지정할 수도 있는데, 이벤트 핸들러의 값은 자바 코드로 구성된 임의 문자열이면 된다. 핸들러가 여러 자바스크립트 구문으로 구성돼 있다면 각 구문을 세미콜론으로 구분한다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">&lt;input type="button" value="Press Me" onclick="alert('thanks');"&gt;   
+
+&lt;form action="processform.action" onsubmit="return validateForm();"&gt;
+
+&lt;body onload="startApp()"&gt; 
+</pre>
+
+<h2>프로퍼티 형태의 이벤트 핸들러</h2>
+
+<p>자바스크립트에서는 이벤트 핸들러를 DOM 엘리먼트의 프로퍼티로 할당할 수 있는데, 이벤트 핸들러 프로퍼티에 원하는 함수를 설정한다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">document.getElementById('button1').onclick = function(){alert('thanks');};
+
+function startApp(){...} 
+document.onload = startApp;
+</pre>
+
+<h2>이벤트 핸들러와 this 키워드</h2>
+
+<p>이벤트 핸들러를 HTML 속성으로 정의하든 자바스크립트 프로퍼티로 정의하든 함수를 document 엘리먼트의 프로퍼티로 할당하는 셈이다. 다시 말해 document 엘리먼트에 새로운 메서드를 정의하는 것이다. 이벤트 핸들러가 호출되면 이벤트가 발생한 엘리먼트의 메서드로서 해당 이벤트 핸들러가 호출되고, 따라서 this 키워드는 대상 엘리먼트를 가리킨다.</p>
+
+<h2>관련 수업</h2>
+
+<ul>
+<li><a href="html-dom-document-object-model-overview.html">HTML DOM(Document Object Model) 소개</a></li>
+<li><a href="changing-html-content-using-html-dom.html">HTML DOM을 이용한 HTML 내용 변경</a></li>
+<li><a href="changing-style-and-css-using-html-dom.html">HTML DOM을 이용한 스타일 및 CSS 변경</a></li>
+<li><a href="html-dom-events-and-event-handling.html">HTML DOM 이벤트와 이벤트 처리</a></li>
+<li><a href="adding-and-removing-html-dom-elements.html">HTML DOM 엘리먼트 추가와 제거</a></li>
+</ul>
+
+
+
+<table class="paging"><tr><td class="prev"><a href="changing-style-and-css-using-html-dom.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="adding-and-removing-html-dom-elements.html">다음 &rarr;</a></td></tr></table>
+<br/>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+<div id="footer">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+</body>
+
+<link type="text/css" href="css/shCore.css" rel="stylesheet" />
+<link type="text/css" href="css/shThemeEclipse.css" rel="stylesheet" />
+<script type="text/javascript" src="js/shCore.js"></script>
+<script type="text/javascript" src="js/shAutoloader.js"></script>
+<script type="text/javascript" src="js/shBrushJScript.js"></script>
+<script type="text/javascript" src="js/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+  'js jscript javascript js/shBrushJScript.js',
+  'xml js/shBrushXml.js'
+);
+SyntaxHighlighter.defaults['toolbar'] = false;
+SyntaxHighlighter.defaults['gutter'] = false;
+SyntaxHighlighter.all();
+</script>
+
+</html>

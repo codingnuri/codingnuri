@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>HTML DOM을 이용한 HTML 내용 변경 | 자바스크립트 자습서</title>
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+<meta name="description" content="자바스크립트 자습서와 예제,">
+<meta name="keywords" content="HTML DOM, HTML 내용 변경">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40877373-1', 'codingnuri.com');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+<div id="container">
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<h1>HTML DOM을 이용한 HTML 내용 변경</h1>
+
+<p>DOM API를 이용하면 다음과 같은 식으로 HTML 엘리먼트의 내용을 변경할 수 있다.</p>
+
+<ul>
+<li>DOM 트리 탐색한다.</li>
+<li>문서 내에서 특정 엘리먼트를 찾는다.</li>
+<li>문서의 내용을 변경한다.</li>
+<li>문서에 새로운 내용을 추가한다.</li>
+</ul>
+
+
+<h2>문서 탐색</h2>
+
+<p>다음 예제에서는 showTags라는 재귀 함수를 이용해 전체 DOM 트리를 탐색한 다음 모든 엘리먼트의 태그명을 나열한다.</p>
+
+<pre class="brush: xml;">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;JavaScript&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+This is a sample document:
+&lt;div&gt;
+    &lt;ul&gt;
+        &lt;li&gt;1&lt;/li&gt;
+        &lt;li&gt;2&lt;/li&gt;
+        &lt;li&gt;3&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+    function showTags(node){
+        var children = node.childNodes;
+        for (var i=0; i &lt; children.length; i++){
+            if (children[i].nodeType == 1 /*Node.ELEMENT_NODE*/){
+                console.log(children[i].tagName);
+            }
+            showTags(children[i]);
+        }
+    }
+    showTags(document);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>showTags(document)의 출력 결과는 다음과 같다.</p>
+
+<pre class="brush: js;">HTML
+HEAD
+TITLE
+BODY
+DIV
+UL
+LI
+LI
+LI
+SCRIPT
+</pre>
+
+<p>Document 객체는 모든 DOM 트리의 루트이지만 해당 트리 내의 HTML 엘리먼트를 나타내지 않는다. document.documentElement 프로퍼티는 문서의 루트 엘리먼트 역할을 하는 <html> 태그를 가리킨다.</p>
+
+<h2>문서 내의 엘리먼트 찾기</h2>
+
+<p>document 객체의 getElementsByTagName() 메서드는 태그 이름을 기준으로 노드 리스트를 반환하고 특정 타입의 HTML 엘리먼트의 리스트를 구하는 데 사용된다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">document.getElementsByTagName("body")[0];
+
+var tables = document.getElementsByTagName("table");
+console.log("The document contains " + tables + " tables.");
+</pre>
+
+<p>document 객체의 getElementById() 메서드는 id 속성을 기준으로 엘리먼트 노드를 반환하는 데 사용된다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">document.getElementById("엘리먼트-id");
+</pre>
+
+<p>document 객체의 getElementsByName() 메서드는 name 속성을 기준으로 노드 리스트를 반환하는 데 사용된다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">// Find &lt;a name="mylink"&gt;
+var link = document.getElementsByName("mylink")[0];
+</pre>
+
+<h2>HTML 문서 수정하기</h2>
+
+<p>innerHTML 프로퍼티를 이용하면 HTML 엘리먼트의 내용을 동적으로 수정할 수 있다.</p>
+
+<p>HTML 엘리먼트에 대해 이 프로퍼티의 값을 조회하면 해당 엘리먼트의 자식을 나타내는 HTML 텍스트 문자열을 받게 된다.</p>
+
+<p>이 프로퍼티에 값을 설정하면 브라우저에서는 HTML 파서를 호출해 프로퍼티에 지정된 문자열을 파싱해 파서가 반환하는 값으로 엘리먼트의 자식을 대체한다.</p>
+
+<p>innerHTML 프로퍼티를 이용하는 예제는 다음과 같다.</p>
+
+<pre class="brush: js;">// 엘리먼트 생성
+var table = document.getElementById("t1"); 
+
+table.border = 1; // 속성 설정
+
+// 이름|타입|값 헤더를 테이블에 추가
+table.innerHTML = "&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;";
+</pre>
+
+<h2>HTML 속성 수정하기</h2>
+
+<p>document 엘리먼트의 속성 값을 설정하기 위해 element.setAttribute() 메서드를 사용할 수 있다. 다음 예제를 보자.</p>
+
+<pre class="brush: js;">document.getElementById("image1").setAttribute("src", "sample.jpg");
+</pre>
+
+<p>속성은 DOM 엘리먼트의 자바스크립트 프로퍼티이기도 하므로 다음과 같이 속성을 설정할 수도 있다.</p>
+
+<pre class="brush: js;">document.getElementById("image1").src = "sample.jpg";
+</pre>
+
+<h2>관련 수업</h2>
+
+<ul>
+<li><a href="html-dom-document-object-model-overview.html">HTML DOM(Document Object Model) 소개</a></li>
+<li><a href="changing-html-content-using-html-dom.html">HTML DOM을 이용한 HTML 내용 변경</a></li>
+<li><a href="changing-style-and-css-using-html-dom.html">HTML DOM을 이용한 스타일 및 CSS 변경</a></li>
+<li><a href="html-dom-events-and-event-handling.html">HTML DOM 이벤트와 이벤트 처리</a></li>
+<li><a href="adding-and-removing-html-dom-elements.html">HTML DOM 엘리먼트 추가와 제거</a></li>
+</ul>
+
+
+
+<table class="paging"><tr><td class="prev"><a href="html-dom-document-object-model-overview.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="changing-style-and-css-using-html-dom.html">다음 &rarr;</a></td></tr></table>
+<br/>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+<div id="footer">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+</body>
+
+<link type="text/css" href="css/shCore.css" rel="stylesheet" />
+<link type="text/css" href="css/shThemeEclipse.css" rel="stylesheet" />
+<script type="text/javascript" src="js/shCore.js"></script>
+<script type="text/javascript" src="js/shAutoloader.js"></script>
+<script type="text/javascript" src="js/shBrushJScript.js"></script>
+<script type="text/javascript" src="js/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+  'js jscript javascript js/shBrushJScript.js',
+  'xml js/shBrushXml.js'
+);
+SyntaxHighlighter.defaults['toolbar'] = false;
+SyntaxHighlighter.defaults['gutter'] = false;
+SyntaxHighlighter.all();
+</script>
+
+</html>

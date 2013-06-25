@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>XML DOM 속성 | 자바스크립트 자습서</title>
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+<meta name="description" content="자바스크립트 자습서와 예제,">
+<meta name="keywords" content="XML DOM 속성">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40877373-1', 'codingnuri.com');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+<div id="container">
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<h1>XML DOM 속성</h1>
+
+<h2>XML DOM 속성 프로퍼티</h2>
+
+<p>엘리먼트 노드의 속성 프로퍼티는 속성 노드의 리스트를 반환한다.</p>
+
+<p>속성 노드의 getNamedItem() 메서드는 속성 노드를 반환한다.</p>
+
+<p>다음 예제를 보자.</p>
+
+<pre class="brush: js;">var text="&lt;person&gt;";
+text +=  "&lt;name&gt;name1&lt;/name&gt;";
+text +=  "&lt;address street='street1' city='city1'&gt;address1&lt;/address&gt;";
+text +=  "&lt;phone&gt;phone1&lt;/phone&gt;";
+text +=  "&lt;/person&gt;";
+
+if (window.DOMParser)
+{
+    parser=new DOMParser();
+    xmlDoc=parser.parseFromString(text,"text/xml");
+}
+else // 인터넷 익스플로러
+{
+    xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+    xmlDoc.async=false;
+    xmlDoc.loadXML(text); 
+} 
+
+var list = xmlDoc.getElementsByTagName('address')[0].attributes; 
+
+console.log("attributes length = " + list.length);
+console.log(list.getNamedItem("street").nodeName + ": "
+    + list.getNamedItem("street").nodeValue);
+console.log(list.getNamedItem("city").nodeName + ": "
+    + list.getNamedItem("city").nodeValue);
+</pre>
+
+<p>위 코드를 실행한 결과는 다음과 같다.</p>
+
+<pre class="brush: js;">attributes length = 2
+street: street1
+city: city1
+</pre>
+
+<h2>XML DOM getAttribute()와 setAttribute() 메서드</h2>
+
+<p>getAttribute() 메서드는 속성 값을 반환한다.</p>
+
+<p>setAttribute() 메서드는 기존 속성의 값을 변경하거나 새 속성을 만들어낸다.</p>
+
+<p>다음 예제를 보자.</p>
+
+<pre class="brush: js;">var text="&lt;person&gt;";
+text +=  "&lt;name&gt;name1&lt;/name&gt;";
+text +=  "&lt;address street='street1' city='city1'&gt;address1&lt;/address&gt;";
+text +=  "&lt;phone&gt;phone1&lt;/phone&gt;";
+text +=  "&lt;/person&gt;";
+
+if (window.DOMParser)
+{
+    parser=new DOMParser();
+    xmlDoc=parser.parseFromString(text,"text/xml");
+}
+else // 인터넷 익스플로러
+{
+    xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+    xmlDoc.async=false;
+    xmlDoc.loadXML(text); 
+} 
+
+var addressNode = xmlDoc.getElementsByTagName('address')[0];
+console.log("Before : " + addressNode.getAttribute('city'));
+addressNode.setAttribute('city', 'city2');
+console.log("After : " + addressNode.getAttribute('city'));
+</pre>
+
+<h2>위 코드를 실행한 결과는 다음과 같다.</h2>
+
+<pre class="brush: js;">Before : city1
+After : city2
+</pre>
+
+<h2>XML DOM getAttributeNode() 메서드</h2>
+
+<p>getAttributeNode() 메서드는 속성 노드를 반환한다. nodeValue 프로퍼티를 이용하면 속성 노드의 값을 구해서 변경할 수 있다.</p>
+
+<p>다음 예제를 보자.</p>
+
+<pre class="brush: js;">var text="&lt;person&gt;";
+text +=  "&lt;name&gt;name1&lt;/name&gt;";
+text +=  "&lt;address street='street1' city='city1'&gt;address1&lt;/address&gt;";
+text +=  "&lt;phone&gt;phone1&lt;/phone&gt;";
+text +=  "&lt;/person&gt;";
+
+if (window.DOMParser)
+{
+    parser=new DOMParser();
+    xmlDoc=parser.parseFromString(text,"text/xml");
+}
+else // 인터넷 익스플로러
+{
+    xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+    xmlDoc.async=false;
+    xmlDoc.loadXML(text); 
+} 
+
+var cityNode = xmlDoc.getElementsByTagName('address')[0].getAttributeNode('city'); 
+console.log("Before: " + cityNode.nodeValue);
+cityNode.nodeValue = 'city3';
+console.log("After: " + cityNode.nodeValue);
+</pre>
+
+<p>위 코드를 실행한 결과는 다음과 같다.</p>
+
+<pre class="brush: js;">Before : city1
+After : city3
+</pre>
+
+<h2>관련 수업</h2>
+
+<ul>
+<li><a href="xml-dom-overview.html">XML DOM 소개</a></li>
+<li><a href="xml-dom-parser.html">XML DOM 파서</a></li>
+<li><a href="xml-dom-nodes.html">XML DOM 노드</a></li>
+<li><a href="xml-dom-attributes.html">XML DOM 속성</a></li>
+<li><a href="create-xml-dom-nodes.html">XML DOM 노드 생성</a></li>
+<li><a href="remove-xml-dom-nodes.html">XML DOM 노드 제거</a></li>
+<li><a href="replace-xml-dom-nodes.html">XML DOM 노드 대체</a></li>
+<li><a href="insert-xml-dom-nodes.html">XML DOM 노드 삽입</a></li>
+</ul>
+
+
+
+<table class="paging"><tr><td class="prev"><a href="xml-dom-nodes.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="create-xml-dom-nodes.html">다음 &rarr;</a></td></tr></table>
+<br/>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+<div id="footer">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+</body>
+
+<link type="text/css" href="css/shCore.css" rel="stylesheet" />
+<link type="text/css" href="css/shThemeEclipse.css" rel="stylesheet" />
+<script type="text/javascript" src="js/shCore.js"></script>
+<script type="text/javascript" src="js/shAutoloader.js"></script>
+<script type="text/javascript" src="js/shBrushJScript.js"></script>
+<script type="text/javascript" src="js/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+  'js jscript javascript js/shBrushJScript.js',
+  'xml js/shBrushXml.js'
+);
+SyntaxHighlighter.defaults['toolbar'] = false;
+SyntaxHighlighter.defaults['gutter'] = false;
+SyntaxHighlighter.all();
+</script>
+
+</html>

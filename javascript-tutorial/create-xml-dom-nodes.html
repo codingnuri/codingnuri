@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>XML DOM 노드 생성 | 자바스크립트 자습서</title>
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+<meta name="description" content="자바스크립트 자습서와 예제,">
+<meta name="keywords" content="XML DOM 노드 생성">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40877373-1', 'codingnuri.com');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+<div id="container">
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<h1>XML DOM 노드 생성</h1>
+
+<h2>새 엘리먼트 노드 생성하기</h2>
+
+<p>createElement() 메서드는 새 엘리먼트 노드를 생성하는 데 사용된다.</p>
+
+<p>appendChild() 메서드는 부모 노드에 자식 노드를 추가하는 데 사용된다.</p>
+
+<h2>새 속성 노드 생성하기</h2>
+
+<p>createAttribute() 메서드는 새 속성 노드를 생성하는 데 사용된다.</p>
+
+<p>setAttributeNode() 메서드는 엘리먼트 노드에 속성 노드를 추가하는 데 사용된다.</p>
+
+<h2>새 텍스트 노드 생성하기</h2>
+
+<p>createTextNode() 메서드는 새 텍스트 노드를 생성하는 데 사용된다.</p>
+
+<p>appendChild() 메서드는 엘리먼트 노드에 텍스트 노드를 추가하는 데 사용된다.</p>
+
+<h2>새 CDATA 섹션 노드 생성하기</h2>
+
+<p>createCDATAsection() 메서드는 새 CDATA 섹션 노드를 생성하는 데 사용된다.</p>
+
+<p>appendChild() 메서드는 엘리먼트 노드에 CDATA 섹션 노드를 추가하는 데 사용된다.</p>
+
+<h2>새 주석 노드 생성하기</h2>
+
+<p>createComment() 메서드는 새 주석 노드를 생성하는 데 사용된다.</p>
+
+<p>appendChild() 메서드는 엘리먼트 노드에 주석 노드를 추가하는 데 사용된다.</p>
+
+<h2>XML DOM 노드 생성 예제</h2>
+
+<p>XML DOM 노드를 생성하는 예제는 다음과 같다.</p>
+
+<pre class="brush: js;">var text="&lt;person&gt;";
+text +=  "&lt;name&gt;name1&lt;/name&gt;";
+text +=  "&lt;phone&gt;phone1&lt;/phone&gt;";
+text +=  "&lt;/person&gt;";
+
+if (window.DOMParser)
+{
+    parser=new DOMParser();
+    xmlDoc=parser.parseFromString(text,"text/xml");
+}
+else // 인터넷 익스플로러
+{
+    xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+    xmlDoc.async=false;
+    xmlDoc.loadXML(text); 
+} 
+
+var addressNode = xmlDoc.createElement('address');
+var attNode = xmlDoc.createAttribute('city');
+var textNode = xmlDoc.createTextNode('address 123');
+var cdataNode = xmlDoc.createCDATASection('cdata section');
+var commentNode = xmlDoc.createComment('this is a comment');
+
+attNode.nodeValue = 'san francisco';
+addressNode.setAttributeNode(attNode);
+addressNode.appendChild(textNode);
+addressNode.appendChild(cdataNode);
+addressNode.appendChild(commentNode);
+
+xmlDoc.getElementsByTagName("person")[0].appendChild(addressNode);
+
+console.log((new XMLSerializer()).serializeToString(xmlDoc));
+</pre>
+
+<p>위 코드를 실행한 결과는 다음과 같다.</p>
+
+<pre class="brush: xml;">&lt;person&gt;
+    &lt;name&gt;name1&lt;/name&gt;
+    &lt;phone&gt;phone1&lt;/phone&gt;
+    &lt;address city="san francisco"&gt;address 123
+        &lt;!--[CDATA[cdata section]]--&gt;
+        &lt;!--this is a comment--&gt;
+    &lt;/address&gt;
+&lt;/person&gt;
+</pre>
+
+<h2>관련 수업</h2>
+
+<ul>
+<li><a href="xml-dom-overview.html">XML DOM 소개</a></li>
+<li><a href="xml-dom-parser.html">XML DOM 파서</a></li>
+<li><a href="xml-dom-nodes.html">XML DOM 노드</a></li>
+<li><a href="xml-dom-attributes.html">XML DOM 속성</a></li>
+<li><a href="create-xml-dom-nodes.html">XML DOM 노드 생성</a></li>
+<li><a href="remove-xml-dom-nodes.html">XML DOM 노드 제거</a></li>
+<li><a href="replace-xml-dom-nodes.html">XML DOM 노드 대체</a></li>
+<li><a href="insert-xml-dom-nodes.html">XML DOM 노드 삽입</a></li>
+</ul>
+
+
+
+<table class="paging"><tr><td class="prev"><a href="xml-dom-attributes.html">&larr; 이전</a><td><a href="index.html">홈</a></td><td class="next"><a href="remove-xml-dom-nodes.html">다음 &rarr;</a></td></tr></table>
+<br/>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7088643041344883";
+/* 코딩누리 */
+google_ad_slot = "1789512654";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+<div id="footer">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.ko">크리에이티브 커먼즈 저작자표시-비영리 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+</body>
+
+<link type="text/css" href="css/shCore.css" rel="stylesheet" />
+<link type="text/css" href="css/shThemeEclipse.css" rel="stylesheet" />
+<script type="text/javascript" src="js/shCore.js"></script>
+<script type="text/javascript" src="js/shAutoloader.js"></script>
+<script type="text/javascript" src="js/shBrushJScript.js"></script>
+<script type="text/javascript" src="js/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+  'js jscript javascript js/shBrushJScript.js',
+  'xml js/shBrushXml.js'
+);
+SyntaxHighlighter.defaults['toolbar'] = false;
+SyntaxHighlighter.defaults['gutter'] = false;
+SyntaxHighlighter.all();
+</script>
+
+</html>

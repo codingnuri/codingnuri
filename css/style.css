@@ -23,7 +23,7 @@ body {
 #container, #footer {
 	background: #FFF;
 	border: 1px solid #AAA;
-	border-bottom: none;
+	border-bottom: 1px solid #AAA;
 	margin: 0 auto;
 	max-width: 720px;
 	max-width: 726px;
